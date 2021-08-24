@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { HomePageComponent } from './home-page/home-page.component';
+import { ComponentsModule } from './components/components.module';
 
 const routes: Routes = [
   {
@@ -12,17 +14,21 @@ const routes: Routes = [
     loadChildren: () => import('./login-page/login.module').then((m) => m.LoginModule),
   },
   {
-    path: '', redirectTo: '/login', pathMatch: 'full'
+    path: '', redirectTo: '/home', pathMatch: 'full'
+  },
+  {
+    path: 'home', component: HomePageComponent
   }
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomePageComponent],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    ComponentsModule
     
   ],
 
