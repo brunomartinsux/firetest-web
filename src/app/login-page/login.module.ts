@@ -16,7 +16,6 @@ import { RegisterPageComponent } from './register-page/register-page.component';
    { path: 'register', component: RegisterPageComponent}
 
   ]
-
 @NgModule({
   declarations: [
     LoginPageComponent,

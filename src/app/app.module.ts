@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ComponentsModule } from './components/components.module';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 const routes: Routes = [
   {
@@ -14,15 +15,22 @@ const routes: Routes = [
     loadChildren: () => import('./login-page/login.module').then((m) => m.LoginModule),
   },
   {
+    path: 'test',
+    loadChildren: () => import('./test-page/test.module').then((m) => m.TestModule)
+  },
+  {
     path: '', redirectTo: '/home', pathMatch: 'full'
   },
   {
     path: 'home', component: HomePageComponent
+  },
+  {
+    path: 'profile', component: ProfilePageComponent
   }
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent],
+  declarations: [AppComponent, HomePageComponent, ProfilePageComponent],
   imports: [
     BrowserModule,
     FormsModule,
