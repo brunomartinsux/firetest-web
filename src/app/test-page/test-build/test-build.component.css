@@ -1,0 +1,40 @@
+.bg-header {
+  height: 75px;
+  background-color: #111827;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  position: fixed;
+  width: 100%;
+}
+
+.menu-item {
+  text-transform: uppercase;
+  height: 56px;
+  border: 1px solid #4b5563;
+  border-radius: 16px;
+  margin-top: 16px;
+  background-image: url('/assets/plus-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center right 16px;
+}
+
+.menu-item:hover {
+  cursor: pointer;
+  background: #4b5563;
+  background-image: url('/assets/plus-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center right 16px;
+}
+
+.selected {
+  background: #4b5563;
+  background-image: url('/assets/check-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center right 16px;
+}
+
+.select-all:hover{
+    cursor: pointer;
+    color: #111827;
+}

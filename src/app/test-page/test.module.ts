@@ -7,13 +7,21 @@ import { ComponentsModule } from '../components/components.module';
 
 import { TestPageComponent } from './test-page.component';
 import { TestMenuComponent } from './test-menu/test-menu.component';
+import { TestBuildComponent } from './test-build/test-build.component';
 
-const routes: Routes = [{ path: '', component: TestPageComponent, children: [
-    { path: 'menu', component: TestMenuComponent }
-] }];
+const routes: Routes = [
+  {
+    path: '',
+    component: TestPageComponent,
+    children: [
+      { path: '', component: TestMenuComponent },
+      { path: 'build-test', component: TestBuildComponent },
+    ],
+  },
+];
 
 @NgModule({
-  declarations: [TestPageComponent, TestMenuComponent],
+  declarations: [TestPageComponent, TestMenuComponent, TestBuildComponent],
   imports: [ComponentsModule, CommonModule, FormsModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
