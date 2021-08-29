@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestBuildComponent implements OnInit {
 
-  items:Array<any> = [1,2,3,4,5,6,7,8,9,10]
+  items:Array<any> = ['Artes','Biologia', 'Ciências gerais', 'Terraplanismo', 'Física', 'Inglês', 'Português', 'História', 'Ensino Religioso', 'Spider Man']
   years: Array<number> = [];
   menuStep = 1
 

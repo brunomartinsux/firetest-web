@@ -8,26 +8,32 @@
     <div class="flex grid-cols-2 align-center">
         {{menuStep == 1? 'Escolher disciplinas' : 'Escolher ano'}}
     </div>
-    <div class="flex grid-cols-1 align-center">
+    <div *ngIf="menuStep == 1" class="flex grid-cols-1 align-center">
         <i class="fa-solid fa-arrow-right-long" (click)="menuStep=2"></i>
     </div>
+    <div *ngIf="menuStep == 2" class="flex grid-cols-1 align-center" routerLink="/test/test-display">
+        <i class="fa-solid fa-arrow-right-long"></i>
+    </div>
 </div>
-<div *ngIf="menuStep == 1" class="flex justify-center container" style="padding: 90px 0; flex-direction: column;">
+<div *ngIf="menuStep == 1" class="flex justify-center container mx-auto"
+    style="padding: 90px 0; flex-direction: column;">
     <div class="flex items-center mx-5 select-all" (click)="selectAll($event)">
         <i class="fa-regular fa-circle-check"></i>
         <p class="ml-2 ">Selecionar todas as disciplinas</p>
     </div>
-    <div *ngFor="let item of items" class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item" (click)="handleSelect($event)">
-        <p>Menu Item {{item}}</p>
-    </div>
+    <button *ngFor="let item of items" class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item"
+        (click)="handleSelect($event)">
+        {{item}}
+    </button>
 </div>
-<div *ngIf="menuStep == 2" class="flex justify-center container" style="padding: 90px 0; flex-direction: column;">
+<div *ngIf="menuStep == 2" class="flex justify-center container mx-auto"
+    style="padding: 90px 0; flex-direction: column;">
     <div class="flex items-center mx-5 select-all" (click)="selectAll($event)">
         <i class="fa-regular fa-circle-check"></i>
         <p class="ml-2 ">Selecionar todos os anos</p>
     </div>
-    <div *ngFor="let year of years" class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item" (click)="handleSelect($event)">
+    <div *ngFor="let year of years" class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item"
+        (click)="handleSelect($event)">
         <p>{{year}}</p>
     </div>
 </div>
-
