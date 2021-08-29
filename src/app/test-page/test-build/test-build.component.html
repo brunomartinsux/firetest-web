@@ -1,4 +1,4 @@
-<div class="flex grid-rows-3 items-center justify-between px-4 bg-header">
+<div class="flex grid-rows-3 items-center justify-between px-4 pr-8 bg-header">
     <div *ngIf="menuStep == 1" class="flex grid-cols-1 align-center" routerLink="/test">
         <i class="fa-solid fa-arrow-left-long"></i>
     </div>
@@ -15,13 +15,13 @@
         <i class="fa-solid fa-arrow-right-long"></i>
     </div>
 </div>
-<div *ngIf="menuStep == 1" class="flex justify-center container mx-auto"
+<div *ngIf="menuStep == 1" class="flex justify-center container mx-auto pr-8"
     style="padding: 90px 0; flex-direction: column;">
     <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll($event)">
         <i class="fa-regular fa-circle-check"></i>
         <p class="ml-2 ">Selecionar todas as disciplinas</p>
     </div>
-    <button *ngFor="let item of items" class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item "
+    <button *ngFor="let item of items" class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item mr-8 "
         (click)="handleSelect($event)">
         {{item}}
     </button>
@@ -32,7 +32,7 @@
         <i class="fa-regular fa-circle-check"></i>
         <p class="ml-2 ">Selecionar todos os anos</p>
     </div>
-    <div *ngFor="let year of years" class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item "
+    <div *ngFor="let year of years" class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item mr-8"
         (click)="handleSelect($event)">
         <p>{{year}}</p>
     </div>
