@@ -1,0 +1,19 @@
+.footer-container {
+  height: 64px;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  background-color: #111827;
+}
+
+.footer-btn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6B7280;
+}
+
+.footer-btn.active-link{
+    color: #fff;
+}

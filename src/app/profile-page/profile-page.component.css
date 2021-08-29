@@ -1,0 +1,58 @@
+.bg-header {
+  height: 75px;
+  background-color: #111827;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.logout-btn {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  width: 94%;
+  margin: 0 3%;
+  height: 80px;
+  right: 16px;
+  bottom: 80px;
+  background: #4b5563;
+  border-radius: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input {
+  height: 52px;
+  background: #1F2937;
+  border-radius: 8px;
+  padding: 0 20px;
+}
+
+.submit-btn {
+  background: #ede9fe;
+  border-radius: 8px;
+  width: 100%;
+  height: 44px;
+  color: #8b5cf6;
+}
+
+.submit-btn[disabled]{
+  background: #5d5e5f;
+  color: #111827;
+}
+
+.profile-card {
+  background: #374151;
+  border-radius: 16px;
+}

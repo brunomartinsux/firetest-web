@@ -1,0 +1,28 @@
+.bg-header{
+    height: 75px;
+    background-color: #111827;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.test-card{
+    display: flex;
+    flex-direction: row;
+    background-color: #4B5563;
+    min-width: 345px;
+    min-height: 168px;
+    align-items: center;
+    padding: 24px 24px;
+    border-radius: 16px;
+    margin: 24px 0;
+}
+
+.test-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    width: 120px;
+    border-radius: 16px;
+}

@@ -1,0 +1,33 @@
+.bg-header{
+    height: 75px;
+    background-color: #111827;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.home-card{
+    display: flex;
+    flex-direction: row;
+    background-color: #4B5563;
+    min-width: 345px;
+    min-height: 128px;
+    align-items: center;
+    padding: 24px 16px;
+    border-radius: 16px;
+    margin: 24px 0;
+}
+
+.home-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #525252;
+    height: 80px;
+    width: 80px;
+    border-radius: 16px;
+}
+
+p.value{
+    font-size: 24px;
+}
