@@ -1,7 +1,27 @@
 <div class="flex grid-rows-1 items-center px-4 bg-header">
     Perfil
 </div>
-<div class="logout-btn" routerLink="/login">
+<div class="container mx-auto p-4">
+    <div class="container p-4 profile-card slide-top">
+        <h1 style="font-size: 20px ; font-weight: 600" class="my-2">Dados Pessoais</h1>
+        <form [formGroup]="profileForm">
+            <div class="form-group">
+                <label for="name">Nome Completo</label>
+                <input type="text" formControlName="name">
+            </div>
+            <div class="form-group my-4">
+                <label for="email">Email</label>
+                <input type="text" formControlName="email">
+            </div>
+            <div class="form-group my-4">
+                <label for="password">Senha</label>
+                <input type="text" formControlName="password">
+            </div>
+            <button class="submit-btn" (click)="handleSubmit()" [disabled]="!profileForm.valid">Salvar</button>
+        </form>
+    </div>
+</div>
+<div class="logout-btn slide-top" routerLink="/login">
     <p>Sair</p>
     <i class="fa-solid fa-arrow-right-from-bracket"></i>
 </div>

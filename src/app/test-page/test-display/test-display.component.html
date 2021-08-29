@@ -25,7 +25,7 @@
             <button class="next-btn" (click)="feedbackUp = true">Próxima</button>
         </div>
         <div class="container report-container" *ngIf="report">
-            <div class="report-content">
+            <div class="report-content slide-top">
                 <p class="my-4">Por favor, descreva seu REPORT com o máximo de informações para resolvermos o problema.</p>
                 <form>
                     <div class="form-group">
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="container report-container feedback" *ngIf="feedbackUp">
-            <div class="report-content feedback">
+            <div class="report-content feedback slide-top">
                 <p class="text-center mt-4">O que você achou da questão?</p>
                 <div class="grid-rows-1 flex items-center justify-around mt-4">
                     <div class="text-center feedback-btn">
