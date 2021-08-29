@@ -6,6 +6,7 @@
   font-size: 20px;
   position: fixed;
   width: 100%;
+  z-index: 1200;
 }
 .option-btn {
   min-height: 56px;

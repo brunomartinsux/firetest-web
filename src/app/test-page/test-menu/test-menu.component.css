@@ -4,13 +4,16 @@
     color: #fff;
     font-weight: 700;
     font-size: 20px;
+    position: fixed;
+    width: 100%;
+    z-index: 1200;
 }
 
 .test-card{
     display: flex;
     flex-direction: row;
     background-color: #4B5563;
-    min-width: 345px;
+    width: 100%;
     min-height: 168px;
     align-items: center;
     padding: 24px 24px;
