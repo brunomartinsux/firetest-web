@@ -10,13 +10,12 @@ export class TestBuildComponent implements OnInit {
     'Artes',
     'Biologia',
     'Ciências gerais',
-    'Terraplanismo',
     'Física',
     'Inglês',
     'Português',
     'História',
-    'Ensino Religioso',
-    'Spider Man',
+    'Geografia',
+
   ];
   years: Array<number> = [];
   menuStep = 1;
