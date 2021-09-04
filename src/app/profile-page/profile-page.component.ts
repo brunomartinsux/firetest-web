@@ -15,8 +15,8 @@ export class ProfilePageComponent implements OnInit {
   ngOnInit(): void {
 
     this.profileForm = this._fb.group({
-      name: ['Jair Messias Bolsonaro', Validators.required],
-      email: ['deiproveiodahavan@yahoo.com', Validators.email],
+      name: ['Bruno Martins', Validators.required],
+      email: ['bruno.dev@firestest.com', Validators.email],
       password: ['°°°°°°°°°°°°°°']
     })
 

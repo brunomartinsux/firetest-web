@@ -4,6 +4,9 @@
     color: #fff;
     font-weight: 700;
     font-size: 20px;
+    position: fixed;
+    width: 100%;
+    z-index: 1200;
 }
 
 .test-card{
