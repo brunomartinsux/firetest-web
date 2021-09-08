@@ -15,10 +15,13 @@ export class TestBuildComponent implements OnInit {
     'Português',
     'História',
     'Geografia',
-
   ];
   years: Array<number> = [];
   menuStep = 1;
+  selectedItems = {
+    subjects: [''],
+    years: [''],
+  };
 
   constructor() {}
 
@@ -28,24 +31,38 @@ export class TestBuildComponent implements OnInit {
     }
   }
 
-  handleSelect(e: any) {
-    var baseClass = 'flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item';
-
-    if (e.target.className == 'flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item selected') {
-      e.target.className = baseClass;
+  handleSelect(item: any, type: string) {
+    console.log('item: ', item, 'type: ', type);
+    console.log(this.selectedItems);
+    
+    if (type == 'subject') {
+      let hasEqual = {equal:false, index: 0}
+      for(let i=0; i< this.selectedItems.subjects.length; i++){
+        if(this.selectedItems.subjects[i] == item){
+          hasEqual = {equal:true, index: i}
+        }
+      }
+      if(hasEqual.equal){
+        this.selectedItems.subjects[hasEqual.index].slice(hasEqual.index, hasEqual.index)
+      } else {
+        this.selectedItems.subjects.push(item)
+      }
     } else {
-      if (e.target.className == baseClass) {
-        e.target.className += ' selected';
+      let hasEqual = {equal:false, index: 0}
+      for(let i=0; i< this.selectedItems.years.length; i++){
+        if(this.selectedItems.years[i] == item){
+          hasEqual = {equal:true, index: i}
+        }
+      }
+      if(hasEqual.equal){
+        this.selectedItems.years[hasEqual.index].slice(hasEqual.index, hasEqual.index)
+      } else {
+        this.selectedItems.years.push(item)
       }
     }
+
+    console.log('Novo selecionados:',this.selectedItems);
   }
 
-  selectAll(e: any) {
-    const elements = document.getElementsByClassName(
-      'flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item',
-    );
-    for (let i = 0; i <= elements.length; i++) {
-      elements[i].className += ' selected';
-    }
-  }
+  selectAll(item: any) {}
 }

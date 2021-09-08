@@ -38,7 +38,6 @@ const routes: Routes = [
     HttpClientModule,
     ComponentsModule,
     ReactiveFormsModule
-    
   ],
 
   providers: [],
