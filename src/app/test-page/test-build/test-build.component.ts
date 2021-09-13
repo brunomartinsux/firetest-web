@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TestService } from 'src/app/services/test.service';
 
 @Component({
   selector: 'app-test-build',
@@ -6,46 +7,73 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./test-build.component.css'],
 })
 export class TestBuildComponent implements OnInit {
-  items: Array<any> = [
-    'Artes',
-    'Biologia',
-    'Ciências gerais',
-    'Física',
-    'Inglês',
-    'Português',
-    'História',
-    'Geografia',
-
-  ];
   years: Array<number> = [];
   menuStep = 1;
+  subjects:any | Array<any> ;
+  selectedSubjects: Array<''> = [];
+  selectedYears: Array<number> = [];
 
-  constructor() {}
+  constructor(private _test: TestService) {}
 
   ngOnInit(): void {
     for (let i = 2020; i >= 1994; i--) {
       this.years.push(i);
     }
+
+    this._test.listSubjects().subscribe((res) => {
+      let arrSubjects = res as any;
+      this.subjects = arrSubjects.subjects as Array<any>;
+    });
   }
 
-  handleSelect(e: any) {
-    var baseClass = 'flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item';
-
-    if (e.target.className == 'flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item selected') {
-      e.target.className = baseClass;
-    } else {
-      if (e.target.className == baseClass) {
-        e.target.className += ' selected';
+  handleSubjectSelection(itemId: any, type: string) {
+    
+    if (type == 'subjects') {
+      if (!this.findInArray(itemId, type)) {
+        this.selectedSubjects.push(itemId);
+      } else {
+        const index = this.selectedSubjects.findIndex(item => item == itemId)
+        this.selectedSubjects.splice(index, 1);
+      }
+    } 
+    if(type == 'years') {
+      if (!this.findInArray(itemId, type)) {
+        this.selectedYears.push(itemId);
+      } else {
+        const index = this.selectedYears.findIndex(item => item == itemId)
+        this.selectedYears.splice(index, 1);
       }
     }
+    
   }
 
-  selectAll(e: any) {
-    const elements = document.getElementsByClassName(
-      'flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item',
-    );
-    for (let i = 0; i <= elements.length; i++) {
-      elements[i].className += ' selected';
+  findInArray(itemId: any, type: string): boolean {
+    if (type == 'subjects') {
+      for (let i = 0; i < this.selectedSubjects?.length; i++ ) {
+        if (this.selectedSubjects[i] == itemId) {
+          return true;
+        }
+      }
+    } 
+    if(type == 'years'){
+      for (let i = 0; i < this.selectedYears?.length; i++) {
+        if (this.selectedYears[i] == itemId) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  selectAll(type:string) {
+    if(type == 'subjects'){
+      for(let i = 0; i < this.subjects?.length; i++){
+        this.handleSubjectSelection(this.subjects[i]?.id, type)
+      }
+    } else {
+      for(let i = 0; i < this.years?.length; i++){
+        this.handleSubjectSelection(this.years[i], type)
+      }
     }
   }
 }

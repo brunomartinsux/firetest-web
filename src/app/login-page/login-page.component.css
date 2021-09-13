@@ -35,3 +35,9 @@ p.link:hover{
     text-decoration: underline;
     cursor: pointer;
 }
+
+.login-pass{
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+}

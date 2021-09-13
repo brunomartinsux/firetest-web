@@ -17,23 +17,26 @@
 </div>
 <div *ngIf="menuStep == 1" class="flex justify-center container mx-auto pr-8"
     style="padding: 90px 0; flex-direction: column;">
-    <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll($event)">
+    <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('subjects')">
         <i class="fa-regular fa-circle-check"></i>
         <p class="ml-2 ">Selecionar todas as disciplinas</p>
     </div>
-    <button *ngFor="let item of items" class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item mr-8 "
-        (click)="handleSelect($event)">
-        {{item}}
+    <button *ngFor="let subject of subjects"
+        [ngClass]="findInArray(subject.id, 'subjects')? 'selected' : '' "
+        (click)="handleSubjectSelection(subject.id, 'subjects')"
+        class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item ">
+        {{subject.title}}
     </button>
 </div>
 <div *ngIf="menuStep == 2" class="flex justify-center container mx-auto"
     style="padding: 90px 0; flex-direction: column;">
-    <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll($event)">
+    <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('years')">
         <i class="fa-regular fa-circle-check"></i>
         <p class="ml-2 ">Selecionar todos os anos</p>
     </div>
-    <div *ngFor="let year of years" class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item mr-8"
-        (click)="handleSelect($event)">
+    <div *ngFor="let year of years" [ngClass]="findInArray(year, 'years')? 'selected' : '' "
+        class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item"
+        (click)="handleSubjectSelection(year, 'years')">
         <p>{{year}}</p>
     </div>
 </div>
