@@ -20,9 +20,11 @@
                 <p class="pl-12 pr-4 py-2" style="pointer-events: none;">{{answer.body}}</p>
             </button>
         </div>
-        <div class="flex grid-rows-1 justify-between items-center pt-4">
-            <i class="fa-regular fa-flag pl-1" style="cursor: pointer;" (click)="report = true"></i>
-            <button class="next-btn" (click)="feedbackUp = true">Próxima</button>
+        <div class="flex grid-rows-1 justify-between items-center py-2">
+            <i class="fa-regular fa-flag pl-1 pt-5" style="cursor: pointer;" (click)="report = true"></i>
+            <button class="fab-btn slide-top">
+                <i class="fa-solid fa-arrow-right fa-lg"></i>
+            </button>
         </div>
         <div class="container report-container" *ngIf="report">
             <div class="report-content slide-top">

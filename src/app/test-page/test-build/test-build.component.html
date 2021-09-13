@@ -1,22 +1,16 @@
-<div class="flex grid-rows-3 items-center justify-between px-4 pr-8 bg-header">
+<div class="flex grid-rows-3 items-center px-4 pr-8 bg-header">
     <div *ngIf="menuStep == 1" class="flex grid-cols-1 align-center" routerLink="/test">
         <i class="fa-solid fa-arrow-left-long"></i>
     </div>
     <div *ngIf="menuStep == 2" class="flex grid-cols-1 align-center" (click)="menuStep=1">
         <i class="fa-solid fa-arrow-left-long"></i>
     </div>
-    <div class="flex grid-cols-2 align-center">
+    <div class="flex grid-cols-2 align-center ml-5">
         {{menuStep == 1? 'Escolher disciplinas' : 'Escolher ano'}}
-    </div>
-    <div *ngIf="menuStep == 1" class="flex grid-cols-1 align-center">
-        <i class="fa-solid fa-arrow-right-long" (click)="menuStep=2"></i>
-    </div>
-    <div *ngIf="menuStep == 2" class="flex grid-cols-1 align-center" routerLink="/test/test-display">
-        <i class="fa-solid fa-arrow-right-long"></i>
     </div>
 </div>
 <div *ngIf="menuStep == 1" class="flex justify-center container mx-auto pr-8"
-    style="padding: 90px 0; flex-direction: column;">
+    style="padding: 90px 0 150px 0; flex-direction: column;">
     <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('subjects')">
         <i class="fa-regular fa-circle-check"></i>
         <p class="ml-2 ">Selecionar todas as disciplinas</p>
@@ -29,7 +23,7 @@
     </button>
 </div>
 <div *ngIf="menuStep == 2" class="flex justify-center container mx-auto"
-    style="padding: 90px 0; flex-direction: column;">
+    style="padding: 90px 0 150px 0; flex-direction: column;">
     <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('years')">
         <i class="fa-regular fa-circle-check"></i>
         <p class="ml-2 ">Selecionar todos os anos</p>
@@ -40,3 +34,9 @@
         <p>{{year}}</p>
     </div>
 </div>
+<button class="fab-btn slide-top" *ngIf="selectedSubjects.length !== 0 && menuStep !== 2">
+    <i class="fa-solid fa-arrow-right fa-lg" (click)="menuStep = 2"></i>
+</button>
+<button class="fab-btn slide-top" *ngIf="selectedYears.length !== 0 && menuStep !== 1">
+    <i class="fa-solid fa-arrow-right fa-lg" routerLink="/test/test-display"></i>
+</button>
