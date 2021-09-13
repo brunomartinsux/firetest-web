@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TestService } from 'src/app/services/test.service';
 
 @Component({
   selector: 'app-test-build',
@@ -6,63 +7,73 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./test-build.component.css'],
 })
 export class TestBuildComponent implements OnInit {
-  items: Array<any> = [
-    'Artes',
-    'Biologia',
-    'Ciências gerais',
-    'Física',
-    'Inglês',
-    'Português',
-    'História',
-    'Geografia',
-  ];
   years: Array<number> = [];
   menuStep = 1;
-  selectedItems = {
-    subjects: [''],
-    years: [''],
-  };
+  subjects:any | Array<any> ;
+  selectedSubjects: Array<''> = [];
+  selectedYears: Array<number> = [];
 
-  constructor() {}
+  constructor(private _test: TestService) {}
 
   ngOnInit(): void {
     for (let i = 2020; i >= 1994; i--) {
       this.years.push(i);
     }
+
+    this._test.listSubjects().subscribe((res) => {
+      let arrSubjects = res as any;
+      this.subjects = arrSubjects.subjects as Array<any>;
+    });
   }
 
-  handleSelect(item: any, type: string) {
-    console.log('item: ', item, 'type: ', type);
-    console.log(this.selectedItems);
+  handleSubjectSelection(itemId: any, type: string) {
     
-    if (type == 'subject') {
-      let hasEqual = {equal:false, index: 0}
-      for(let i=0; i< this.selectedItems.subjects.length; i++){
-        if(this.selectedItems.subjects[i] == item){
-          hasEqual = {equal:true, index: i}
-        }
-      }
-      if(hasEqual.equal){
-        this.selectedItems.subjects[hasEqual.index].slice(hasEqual.index, hasEqual.index)
+    if (type == 'subjects') {
+      if (!this.findInArray(itemId, type)) {
+        this.selectedSubjects.push(itemId);
       } else {
-        this.selectedItems.subjects.push(item)
+        const index = this.selectedSubjects.findIndex(item => item == itemId)
+        this.selectedSubjects.splice(index, 1);
       }
-    } else {
-      let hasEqual = {equal:false, index: 0}
-      for(let i=0; i< this.selectedItems.years.length; i++){
-        if(this.selectedItems.years[i] == item){
-          hasEqual = {equal:true, index: i}
-        }
-      }
-      if(hasEqual.equal){
-        this.selectedItems.years[hasEqual.index].slice(hasEqual.index, hasEqual.index)
+    } 
+    if(type == 'years') {
+      if (!this.findInArray(itemId, type)) {
+        this.selectedYears.push(itemId);
       } else {
-        this.selectedItems.years.push(item)
+        const index = this.selectedYears.findIndex(item => item == itemId)
+        this.selectedYears.splice(index, 1);
       }
     }
-
-    console.log('Novo selecionados:',this.selectedItems);
+    
   }
 
-  selectAll(item: any) {}
+  findInArray(itemId: any, type: string): boolean {
+    if (type == 'subjects') {
+      for (let i = 0; i < this.selectedSubjects?.length; i++ ) {
+        if (this.selectedSubjects[i] == itemId) {
+          return true;
+        }
+      }
+    } 
+    if(type == 'years'){
+      for (let i = 0; i < this.selectedYears?.length; i++) {
+        if (this.selectedYears[i] == itemId) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  selectAll(type:string) {
+    if(type == 'subjects'){
+      for(let i = 0; i < this.subjects?.length; i++){
+        this.handleSubjectSelection(this.subjects[i]?.id, type)
+      }
+    } else {
+      for(let i = 0; i < this.years?.length; i++){
+        this.handleSubjectSelection(this.years[i], type)
+      }
+    }
+  }
 }

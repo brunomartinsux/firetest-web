@@ -1,4 +1,4 @@
-<div class="flex grid-rows-3 items-center justify-between px-4 pr-8 bg-header">
+<div class="flex grid-rows-3 items-center justify-between px-4 bg-header">
     <div class="flex grid-cols-1 align-center" routerLink="/test">
         <i class="fa-solid fa-arrow-left-long"></i>
     </div>
@@ -9,7 +9,7 @@
         <i class="fa-solid fa-xmark"></i>
     </div>
 </div>
-<div class="flex container mx-auto " style="padding: 90px 32px 90px 16px; flex-direction: column;">
+<div class="flex container mx-auto " style="padding: 90px 16px; flex-direction: column;">
     <div *ngFor="let test of tests" class="test-container mx-auto">
         <p style="font-size: 14px; padding-bottom: 16px;">{{test.subject}}</p>
         <img [src]="test.img" alt="test-img" class="test-img">

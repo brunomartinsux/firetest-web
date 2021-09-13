@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ComponentsModule } from './components/components.module';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -16,16 +17,17 @@ const routes: Routes = [
   },
   {
     path: 'test',
-    loadChildren: () => import('./test-page/test.module').then((m) => m.TestModule)
+    loadChildren: () => import('./test-page/test.module').then((m) => m.TestModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
   },
   {
-    path: 'home', component: HomePageComponent
+    path: 'home', component: HomePageComponent, canActivate: [AuthGuardService]
   },
   {
-    path: 'profile', component: ProfilePageComponent
+    path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuardService]
   }
 ];
 
@@ -40,7 +42,7 @@ const routes: Routes = [
     ReactiveFormsModule
   ],
 
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent],
 })
 

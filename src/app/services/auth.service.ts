@@ -1,14 +1,14 @@
+import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { tap } from 'rxjs/operators'; 
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  endpoint = "https://firetest-apis.herokuapp.com/";
+  endpoint = environment.endpoint();
   _urlUsersLogin = 'users/login';
   _urlUsersCreate = 'users/create';
   _urlUsersRecover = 'users/recover';
@@ -18,36 +18,44 @@ export class AuthService {
 
   private readonly JWT_TOKEN = 'JWT_TOKEN';
 
-  reqHeaders = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${this.getJwtToken()}`,
-  });
-
   constructor(private _http: HttpClient, private _route: Router) {}
 
-  login(form: {email:string, password:string}){
-    const url = this.endpoint + this._urlUsersLogin
+  login(form: { email: string; password: string }) {
+    const url = this.endpoint + this._urlUsersLogin;
     return this._http.post(url, form).pipe(
       tap(
-        res => {
-          this.doLoginUser(res)
+        (res) => {
+          this.doLoginUser(res);
         },
-        error => console.log(error)
-      )
-    )
+        (error) => console.error(error),
+      ),
+    );
   }
-  register(form: {email:string, complete_name:string, hashed_password:string}){
-    const url = this.endpoint + this._urlUsersCreate
-    return this._http.post(url, form)
+
+  register(form: { email: string; complete_name: string; hashed_password: string }) {
+    const url = this.endpoint + this._urlUsersCreate;
+    return this._http.post(url, form);
   }
-  
-  logout(){
-    const url = this.endpoint + this._urlUsersLogout
-    return this._http.post(url, {headers: this.reqHeaders}).pipe(
-      tap(
-        res => this.doLogoutUser
-      )
-    )
+
+  logout() {
+    const reqHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.getJwtToken()}`,
+    });
+
+    const url = this.endpoint + this._urlUsersLogout;
+
+    // Verifica se o usuário está logado antes de deslogar
+    if (this.isLoggedIn()) {
+      this._http.post(url, { token: this.getJwtToken() }, { headers: reqHeaders }).subscribe(
+        () => {
+          this.removeToken();
+        },
+        (error) => {
+          alert(error.error);
+        },
+      );
+    }
   }
 
   // Handle login
@@ -74,14 +82,9 @@ export class AuthService {
     }
   }
 
-  // handle logout
-  private doLogoutUser() {
-    this.removeToken();
-    this._route.navigate(['/login']);
-  }
-
   // Limpa os tokens
   private removeToken() {
     localStorage.removeItem(this.JWT_TOKEN);
+    this._route.navigate(['/login']);
   }
 }
