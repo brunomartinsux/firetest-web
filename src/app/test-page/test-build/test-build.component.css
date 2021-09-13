@@ -32,6 +32,20 @@
     color: #111827;
 }
 
+.disabled{
+  pointer-events: none; color: gray
+}
+
+.fab-btn{
+  background: #8b5cf6;
+  position: fixed;
+  top: 80vh;
+  right: 16px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
 @media only screen and (min-width: 768px)  {
   .menu-item:hover {
     cursor: pointer;
