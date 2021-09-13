@@ -6,7 +6,7 @@
         Prova
     </div>
     <div class="flex grid-cols-1 align-center">
-        <i class="fa-solid fa-xmark"></i>
+        <i class="fa-solid fa-xmark " routerLink="/home"></i>
     </div>
 </div>
 <div class="flex container mx-auto " style="padding: 90px 16px; flex-direction: column;">
@@ -32,7 +32,7 @@
                         <textarea type="text" class="simple-input"></textarea>
                     </div>
                 </form>
-                <button class="report-btn mt-8">Enviar</button>
+                <button class="report-btn mt-8" (click)="report = false">Enviar</button>
                 <a class="flex justify-center mt-4" style="font-weight: 400; cursor: pointer" (click)="report = false">Fechar</a>
             </div>
         </div>
@@ -41,15 +41,15 @@
                 <p class="text-center mt-4">O que você achou da questão?</p>
                 <div class="grid-rows-1 flex items-center justify-around mt-4">
                     <div class="text-center feedback-btn">
-                        <img src="/assets/hard-feedback.svg" alt="ez-img" (click)="feedbackUp = false">
+                        <img src="/assets/hard-feedback.svg" alt="ez-img" (click)="handleFeedback()">
                         <small>Difícil</small>
                     </div>
                     <div class="text-center feedback-btn">
-                        <img src="/assets/med-feedback.svg" alt="ez-img" (click)="feedbackUp = false">
+                        <img src="/assets/med-feedback.svg" alt="ez-img" (click)="handleFeedback()">
                         <small>Médio</small>
                     </div>
                     <div class="text-center feedback-btn">
-                        <img src="/assets/ez-feedback.svg" alt="ez-img" (click)="feedbackUp = false">
+                        <img src="/assets/ez-feedback.svg" alt="ez-img" (click)="handleFeedback()">
                         <small>Fácil</small>
                     </div>
                 </div>

@@ -57,4 +57,9 @@ export class TestDisplayComponent implements OnInit {
       }
     }
   }
+
+  handleFeedback(){
+    window.scrollTo(0, 0);
+    window.location.reload()
+  }
 }
