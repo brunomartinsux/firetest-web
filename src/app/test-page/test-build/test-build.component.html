@@ -1,42 +1,47 @@
-<div class="flex grid-rows-3 items-center px-4 pr-8 bg-header">
-    <div *ngIf="menuStep == 1" class="flex grid-cols-1 align-center" routerLink="/test">
-        <i class="fa-solid fa-arrow-left-long"></i>
+<div class="container" *ngIf="pageController === 'filter' ">
+    <div class="flex grid-rows-3 items-center px-4 pr-8 bg-header">
+        <div *ngIf="menuStep == 1" class="flex grid-cols-1 align-center" routerLink="/test">
+            <i class="fa-solid fa-arrow-left-long"></i>
+        </div>
+        <div *ngIf="menuStep == 2" class="flex grid-cols-1 align-center" (click)="menuStep=1">
+            <i class="fa-solid fa-arrow-left-long"></i>
+        </div>
+        <div class="flex grid-cols-2 align-center ml-5">
+            {{menuStep == 1? 'Escolher disciplinas' : 'Escolher ano'}}
+        </div>
     </div>
-    <div *ngIf="menuStep == 2" class="flex grid-cols-1 align-center" (click)="menuStep=1">
-        <i class="fa-solid fa-arrow-left-long"></i>
+    <div *ngIf="menuStep == 1" class="flex justify-center container mx-auto pr-8"
+        style="padding: 90px 0 150px 0; flex-direction: column;">
+        <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('subjects')">
+            <i class="fa-regular fa-circle-check"></i>
+            <p class="ml-2 ">Selecionar todas as disciplinas</p>
+        </div>
+        <button *ngFor="let subject of subjects"
+            [ngClass]="findInArray(subject.id, 'subjects')? 'selected' : '' "
+            (click)="handleSubjectSelection(subject.id, 'subjects')"
+            class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item ">
+            {{subject.title}}
+        </button>
     </div>
-    <div class="flex grid-cols-2 align-center ml-5">
-        {{menuStep == 1? 'Escolher disciplinas' : 'Escolher ano'}}
+    <div *ngIf="menuStep == 2" class="flex justify-center container mx-auto"
+        style="padding: 90px 0 150px 0; flex-direction: column;">
+        <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('years')">
+            <i class="fa-regular fa-circle-check"></i>
+            <p class="ml-2 ">Selecionar todos os anos</p>
+        </div>
+        <div *ngFor="let year of years" [ngClass]="findInArray(year, 'years')? 'selected' : '' "
+            class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item"
+            (click)="handleSubjectSelection(year, 'years')">
+            <p>{{year}}</p>
+        </div>
     </div>
-</div>
-<div *ngIf="menuStep == 1" class="flex justify-center container mx-auto pr-8"
-    style="padding: 90px 0 150px 0; flex-direction: column;">
-    <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('subjects')">
-        <i class="fa-regular fa-circle-check"></i>
-        <p class="ml-2 ">Selecionar todas as disciplinas</p>
-    </div>
-    <button *ngFor="let subject of subjects"
-        [ngClass]="findInArray(subject.id, 'subjects')? 'selected' : '' "
-        (click)="handleSubjectSelection(subject.id, 'subjects')"
-        class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item ">
-        {{subject.title}}
+    <button class="fab-btn slide-top" (click)="menuStep = 2" *ngIf="selectedSubjects.length !== 0 && menuStep !== 2">
+        <i class="fa-solid fa-arrow-right fa-lg" ></i>
+    </button>
+    <button class="fab-btn slide-top" (click)="pageController = 'display' " *ngIf="selectedYears.length !== 0 && menuStep !== 1">
+        <i class="fa-solid fa-arrow-right fa-lg" ></i>
     </button>
 </div>
-<div *ngIf="menuStep == 2" class="flex justify-center container mx-auto"
-    style="padding: 90px 0 150px 0; flex-direction: column;">
-    <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('years')">
-        <i class="fa-regular fa-circle-check"></i>
-        <p class="ml-2 ">Selecionar todos os anos</p>
-    </div>
-    <div *ngFor="let year of years" [ngClass]="findInArray(year, 'years')? 'selected' : '' "
-        class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item"
-        (click)="handleSubjectSelection(year, 'years')">
-        <p>{{year}}</p>
-    </div>
+<div class="container" *ngIf="pageController === 'display' ">
+    <app-test-display [reqBody]="reqBody"></app-test-display>
 </div>
-<button class="fab-btn slide-top" (click)="menuStep = 2" *ngIf="selectedSubjects.length !== 0 && menuStep !== 2">
-    <i class="fa-solid fa-arrow-right fa-lg" ></i>
-</button>
-<button class="fab-btn slide-top" routerLink="/test/test-display" *ngIf="selectedYears.length !== 0 && menuStep !== 1">
-    <i class="fa-solid fa-arrow-right fa-lg" ></i>
-</button>
