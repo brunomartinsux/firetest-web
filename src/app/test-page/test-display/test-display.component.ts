@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TestService } from 'src/app/services/test.service';
 
 @Component({
   selector: 'app-test-display',
@@ -9,30 +10,35 @@ export class TestDisplayComponent implements OnInit {
   report: boolean = false;
   feedbackUp: boolean = false;
   tentou: boolean = false;
+  simulateId: string = ''
+  indexOfQuestion: number = 0
 
-  tests = [
-    {
-      subject: 'Fisica/Princípios da Física',
-      img: '/assets/test-img.svg',
-      body: [
-        'Uma pesquisa de mercado sobre produtos de higiene e limpeza apresentou o comparativo entre duas marcas, A e B.',
-        'Esses produtos são concentrados e, para sua utilização, é necessária sua diluição em água.',
-        'Uma pesquisa de mercado sobre produtos de higiene e limpeza apresentou o comparativo entre duas marcas, A e B. limpeza apresentou o comparativo entre duas marcas, A e B.',
-        'Nessas condições, as marcas dos quatro produtos adquiridos pelo consumidor, na ordem apresentada na tabela, são:',
-      ],
-      answers: [
-        { option: 'A', body: 'A, A, A, B', isCorrect: true },
-        { option: 'B', body: 'A, B, A, A', isCorrect: false },
-        { option: 'C', body: 'A, B, C, B', isCorrect: false },
-        { option: 'D', body: 'A, A, A, A', isCorrect: false },
-        { option: 'E', body: 'A, B, B, B', isCorrect: false },
-      ],
-    },
-  ];
+  tests: Array<any> = [];
+  displayTest: Array<any> = []
 
-  constructor() {}
+  @Input() reqBody:any
 
-  ngOnInit(): void {}
+  constructor( private _test: TestService ) {}
+
+  ngOnInit(): void {
+    this.buildQuestion()
+  }
+
+  buildQuestion(){
+    this._test.createTest(this.reqBody).subscribe(
+      res => this.simulateId = res.simulate_id,
+      error => console.log(error),
+      () => this.setQuestion(),
+    )
+  }
+  setQuestion(){
+    this._test.getQuestion(this.simulateId).subscribe(
+      res => {
+        this.tests = res as Array<any>
+        this.displayTest = [this.tests[this.indexOfQuestion]]
+      }
+    )
+  }
 
   handleAnswer(isCorrect: boolean, target: any) {
     const element = target as Element;
@@ -59,7 +65,7 @@ export class TestDisplayComponent implements OnInit {
   }
 
   handleFeedback(){
-    window.scrollTo(0, 0);
-    window.location.reload()
+    this.displayTest = [this.tests[this.indexOfQuestion += 1]]
+    this.feedbackUp = false
   }
 }
