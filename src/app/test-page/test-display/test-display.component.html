@@ -1,18 +1,20 @@
 <div class="flex grid-rows-3 items-center justify-between px-4 bg-header">
-    <div class="flex grid-cols-1 align-center" routerLink="/test">
-        <i class="fa-solid fa-arrow-left-long"></i>
+    <div class="flex grid-cols-1 align-center">
+        <i class="fa-solid fa-arrow-left-long" (click)="returnWarning = true"></i>
     </div>
     <div class="flex grid-cols-2 align-center">
-        {{displayTest[0]?.subject}}
+        {{displayTest[0]?.subject ?? 'Aguarde um instante...'}}
     </div>
     <div class="flex grid-cols-1 align-center">
-        <i class="fa-solid fa-xmark " routerLink="/home"></i>
+        <i class="fa-solid fa-xmark " (click)="closeWarning = true"></i>
     </div>
 </div>
-<div class="flex container mx-auto " style="padding: 90px 16px; flex-direction: column;">
+<div class="flex container mx-auto " style="padding: 90px 16px; padding-bottom: 50px; flex-direction: column;">
     <div *ngFor="let test of displayTest" class="test-container mx-auto">
         <p style="font-size: 18px; padding-bottom: 14px; font-weight: 600;"> {{test?.modules[0] ?? ''}} ({{test?.org + '/' + test?.year}})</p>
-        <img *ngIf="test.img == 'asd' " [src]="test?.img" class="test-img">
+        <img *ngFor="let img of test.img" [src]="test?.img" class="test-img">
+        <p *ngIf="test?.text" (click)="showText = !showText"><strong>Clique aqui para mostrar os textos</strong></p>
+        <p *ngIf="showText" class="my-4">{{test.text}}</p>
         <p class="my-4" *ngFor="let paragraph of test.body">{{paragraph}}</p>
         <div *ngFor="let answer of test.answers">
             <button class="option-btn" (click)="handleAnswer(answer?.isCorrect, $event.target)" [id]="answer?.isCorrect? 'correct' : 'incorrect' ">
@@ -38,7 +40,7 @@
                 <a class="flex justify-center mt-4" style="font-weight: 400; cursor: pointer" (click)="report = false">Fechar</a>
             </div>
         </div>
-        <div class="container report-container feedback" *ngIf="feedbackUp">
+        <div class="container report-container feedback" *ngIf="feedbackUp" (click)="feedbackUp = false">
             <div class="report-content feedback slide-top">
                 <p class="text-center mt-4">O que você achou da questão?</p>
                 <div class="grid-rows-1 flex items-center justify-around mt-4">
@@ -57,6 +59,24 @@
                 </div>
             </div>
         </div>
-        
+        <div class="container report-container feedback" *ngIf="closeWarning" (click)="closeWarning = false">
+            <div class="report-content feedback slide-top">
+                <p class="text-center mt-4">Tem certeza que deseja fechar?</p>
+                <div class="grid-cols-6 flex items-center justify-center mt-4" style="flex-direction: column;">
+                    <button class="btn-primary my-2" routerLink="/home">Fechar</button>
+                    <button>Cancelar</button>
+                </div>
+            </div>
+        </div>
+        <div class="container report-container feedback" *ngIf="returnWarning" (click)="returnWarning = false">
+            <div class="report-content feedback slide-top">
+                <p class="text-center mt-4">Você quer voltar para o menu?</p>
+                <div class="grid-cols-6 flex items-center justify-center mt-4" style="flex-direction: column;">
+                    <button class="btn-primary my-2" routerLink="/test/build-test">Ir para o menu</button>
+                    <button>Fechar</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

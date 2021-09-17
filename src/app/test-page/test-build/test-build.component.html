@@ -12,12 +12,12 @@
     </div>
     <div *ngIf="menuStep == 1" class="flex justify-center container mx-auto pr-8"
         style="padding: 90px 0 150px 0; flex-direction: column;">
-        <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('subjects')">
+        <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('subjects')" unselectable="on"
+            onselectstart="return false;" onmousedown="return false;">
             <i class="fa-regular fa-circle-check"></i>
-            <p class="ml-2 ">Selecionar todas as disciplinas</p>
+            <p class="ml-2 " unselectable="on">Selecionar todas as disciplinas</p>
         </div>
-        <button *ngFor="let subject of subjects"
-            [ngClass]="findInArray(subject.id, 'subjects')? 'selected' : '' "
+        <button *ngFor="let subject of subjects" [ngClass]="findInArray(subject.id, 'subjects')? 'selected' : '' "
             (click)="handleSubjectSelection(subject.id, 'subjects')"
             class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item ">
             {{subject.title}}
@@ -25,25 +25,29 @@
     </div>
     <div *ngIf="menuStep == 2" class="flex justify-center container mx-auto"
         style="padding: 90px 0 150px 0; flex-direction: column;">
-        <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('years')">
+        <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('years')" unselectable="on"
+            onselectstart="return false;" onmousedown="return false;">
             <i class="fa-regular fa-circle-check"></i>
-            <p class="ml-2 ">Selecionar todos os anos</p>
+            <p class="ml-2 ">Selecionar
+                todos os anos</p>
         </div>
         <div class="row">
             <div *ngFor="let year of years" [ngClass]="findInArray(year, 'years')? 'selected' : '' "
-            class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item"
-            (click)="handleSubjectSelection(year, 'years')">
-            <p>{{year}}</p>
-        </div>
+                class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item"
+                (click)="handleSubjectSelection(year, 'years')">
+                <p>{{year}}</p>
+            </div>
         </div>
     </div>
     <button class="fab-btn slide-top" (click)="menuStep = 2" *ngIf="selectedSubjects.length !== 0 && menuStep !== 2">
-        <i class="fa-solid fa-arrow-right fa-lg" ></i>
+        <i class="fa-solid fa-arrow-right fa-lg"></i>
     </button>
-    <button class="fab-btn slide-top" (click)="pageController = 'display' " *ngIf="selectedYears.length !== 0 && menuStep !== 1">
-        <i class="fa-solid fa-arrow-right fa-lg" ></i>
+    <button class="fab-btn slide-top" (click)="pageController = 'display' "
+        *ngIf="selectedYears.length !== 0 && menuStep !== 1">
+        <i class="fa-solid fa-arrow-right fa-lg"></i>
     </button>
 </div>
 <div class="container" *ngIf="pageController === 'display' ">
     <app-test-display [reqBody]="reqBody"></app-test-display>
 </div>
+<app-footer [hidden]="pageController === 'display'"></app-footer>
