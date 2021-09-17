@@ -12,6 +12,9 @@ export class TestDisplayComponent implements OnInit {
   tentou: boolean = false;
   simulateId: string = ''
   indexOfQuestion: number = 0
+  showText: boolean = false
+  closeWarning: boolean = false
+  returnWarning: boolean = false
 
   tests: Array<any> = [];
   displayTest: Array<any> = []
@@ -21,7 +24,7 @@ export class TestDisplayComponent implements OnInit {
   constructor( private _test: TestService ) {}
 
   ngOnInit(): void {
-    console.log(this.displayTest[0]);
+    
     
     this.buildQuestion()
   }
@@ -38,6 +41,8 @@ export class TestDisplayComponent implements OnInit {
       res => {
         this.tests = res as Array<any>
         this.displayTest = [this.tests[this.indexOfQuestion]]
+        console.log(this.tests[this.indexOfQuestion]);
+        
       }
     )
   }

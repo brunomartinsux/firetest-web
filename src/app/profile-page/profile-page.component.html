@@ -7,19 +7,19 @@
         <form [formGroup]="profileForm">
             <div class="form-group">
                 <label for="name">Nome Completo</label>
-                <input type="text" formControlName="complete_name" [value]="currentUser?.complete_name">
+                <input type="text" formControlName="complete_name" id="name" [value]="currentUser?.complete_name">
             </div>
             <div class="form-group my-4">
                 <label for="email">Email</label>
-                <input type="text" formControlName="email" [value]="currentUser?.email">
+                <input type="text" formControlName="email" id="email" [value]="currentUser?.email">
             </div>
             <div class="form-group my-4">
                 <label for="schooling">Série/Ano</label>
-                <input type="text" formControlName="schooling" [value]="currentUser?.schooling">
+                <input type="text" formControlName="schooling" id="schooling" [value]="currentUser?.schooling">
             </div>
             <div class="form-group my-4">
                 <label for="institution">Escola/Instituição</label>
-                <input type="text" formControlName="institution" [value]="currentUser?.institution">
+                <input type="text" formControlName="institution" id="institution" [value]="currentUser?.institution">
             </div>
             <button class="submit-btn" (click)="handleSubmit()">Salvar</button>
         </form>

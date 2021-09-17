@@ -12,7 +12,15 @@
         </div>
         <div class="form-group mt-10">
             <label for="schooling">Grau de escolaridade</label>
-            <input type="text" class="simple-input" id="schooling" formControlName="schooling">
+            <select class="simple-input" formControlName="schooling">
+                <option value="" hidden>Selecione a escolaridade</option>
+                <option value="1º Ano - Ens Médio" >1º Ano - Ens Médio</option>
+                <option value="2º Ano - Ens Médio" >2º Ano - Ens Médio</option>
+                <option value="3º Ano - Ens Médio" >3º Ano - Ens Médio</option>
+                <option value="Superior Incompleto" >Superior Incompleto</option>
+                <option value="Superior Completo" >Superior Completo</option>
+                <option value="Não informado" >Outros</option>
+            </select>
         </div>
         <div class="form-group mt-10">
             <label for="school">Instituição de ensino</label>
