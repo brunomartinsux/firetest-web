@@ -1,18 +1,30 @@
-<app-header></app-header>
+<app-header style="position: fixed; top: 0; width: 100%; z-index: 1200;"></app-header>
 <div class="container mx-auto p-5">
     <h1 class="login-title">Cadastre-se gratuitamente</h1>
     <form class="slide-top" [formGroup]="registerForm">
         <div class="form-group mt-10">
+            <label for="email">Nome completo</label>
+            <input type="text" class="simple-input" id="name" formControlName="complete_name">
+        </div>
+        <div class="form-group mt-10">
             <label for="email">E-mail</label>
             <input type="text" class="simple-input" id="email" formControlName="email">
         </div>
+        <div class="form-group mt-10">
+            <label for="schooling">Grau de escolaridade</label>
+            <input type="text" class="simple-input" id="schooling" formControlName="schooling">
+        </div>
+        <div class="form-group mt-10">
+            <label for="school">Instituição de ensino</label>
+            <input type="text" class="simple-input" id="school" formControlName="institution">
+        </div>
         <div class="form-group mt-8">
-            <label for="email">Senha</label>
+            <label for="password">Senha</label>
             <input [type]="viewPass? 'text' : 'password' " class="simple-input" id="password" formControlName="password">
             <i class="login-pass mt-10" (click)="viewPass = !viewPass" [ngClass]="viewPass? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash' "></i>
         </div>
         <div class="form-group mt-8">
-            <label for="email">Confirme sua senha</label>
+            <label for="confirmPassword">Confirme sua senha</label>
             <input [type]="viewPass? 'text' : 'password' " class="simple-input" formControlName="confirmPassword">
             <i class="login-pass mt-10" (click)="viewPass = !viewPass" [ngClass]="viewPass? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash' "></i>
         </div>

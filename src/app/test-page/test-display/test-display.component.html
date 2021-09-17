@@ -3,7 +3,7 @@
         <i class="fa-solid fa-arrow-left-long"></i>
     </div>
     <div class="flex grid-cols-2 align-center">
-        Prova
+        {{displayTest[0]?.subject}}
     </div>
     <div class="flex grid-cols-1 align-center">
         <i class="fa-solid fa-xmark " routerLink="/home"></i>
@@ -11,8 +11,8 @@
 </div>
 <div class="flex container mx-auto " style="padding: 90px 16px; flex-direction: column;">
     <div *ngFor="let test of displayTest" class="test-container mx-auto">
-        <p style="font-size: 14px; padding-bottom: 16px;">{{test?.subject}}</p>
-        <img *ngIf="test.img" [src]="test?.img" class="test-img">
+        <p style="font-size: 18px; padding-bottom: 14px; font-weight: 600;"> {{test?.modules[0] ?? ''}} ({{test?.org + '/' + test?.year}})</p>
+        <img *ngIf="test.img == 'asd' " [src]="test?.img" class="test-img">
         <p class="my-4" *ngFor="let paragraph of test.body">{{paragraph}}</p>
         <div *ngFor="let answer of test.answers">
             <button class="option-btn" (click)="handleAnswer(answer?.isCorrect, $event.target)" [id]="answer?.isCorrect? 'correct' : 'incorrect' ">

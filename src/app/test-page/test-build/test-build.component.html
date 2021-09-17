@@ -29,10 +29,12 @@
             <i class="fa-regular fa-circle-check"></i>
             <p class="ml-2 ">Selecionar todos os anos</p>
         </div>
-        <div *ngFor="let year of years" [ngClass]="findInArray(year, 'years')? 'selected' : '' "
+        <div class="row">
+            <div *ngFor="let year of years" [ngClass]="findInArray(year, 'years')? 'selected' : '' "
             class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item"
             (click)="handleSubjectSelection(year, 'years')">
             <p>{{year}}</p>
+        </div>
         </div>
     </div>
     <button class="fab-btn slide-top" (click)="menuStep = 2" *ngIf="selectedSubjects.length !== 0 && menuStep !== 2">

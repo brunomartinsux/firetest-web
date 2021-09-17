@@ -18,7 +18,9 @@ export class RegisterPageComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
-      complete_name: ['Bruno Martins', Validators.required],
+      schooling:[''],
+      institution: [''],
+      complete_name: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     });
@@ -37,9 +39,15 @@ export class RegisterPageComponent implements OnInit {
       this.error = true;
     } else {
       this._auth.register({
+        account: {
         email: this.registerForm.value.email,
         complete_name: this.registerForm.value.complete_name,
         hashed_password: this.registerForm.value.password,
+        },
+        infos: {
+          schooling:this.registerForm.value.schooling,
+          institution: this.registerForm.value.institution
+        }
       }).subscribe(
         () => {
           console.log('sucesso no cadastro')

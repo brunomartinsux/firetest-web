@@ -7,18 +7,35 @@
         <form [formGroup]="profileForm">
             <div class="form-group">
                 <label for="name">Nome Completo</label>
-                <input type="text" formControlName="name">
+                <input type="text" formControlName="complete_name" [value]="currentUser?.complete_name">
             </div>
             <div class="form-group my-4">
                 <label for="email">Email</label>
-                <input type="text" formControlName="email">
+                <input type="text" formControlName="email" [value]="currentUser?.email">
             </div>
             <div class="form-group my-4">
-                <label for="password">Senha</label>
-                <input type="text" formControlName="password">
+                <label for="schooling">Série/Ano</label>
+                <input type="text" formControlName="schooling" [value]="currentUser?.schooling">
             </div>
-            <button class="submit-btn" (click)="handleSubmit()" [disabled]="!profileForm.valid">Salvar</button>
+            <div class="form-group my-4">
+                <label for="institution">Escola/Instituição</label>
+                <input type="text" formControlName="institution" [value]="currentUser?.institution">
+            </div>
+            <button class="submit-btn" (click)="handleSubmit()">Salvar</button>
         </form>
+    </div>
+</div>
+
+<div class="container mx-auto p-4 pt-0">
+    <div class="container p-4 profile-card slide-top flex items-center" style="flex-direction: column;">
+        <h1 style="font-size: 20px ; font-weight: 600" class="d-flex self-start pl-2">Assinatura</h1>
+        <div class="premium-content flex justify-center p-4">
+            <p>Atualmente você está usando o <strong>Plano {{currentUser?.premium? 'PREMIUM' : 'FREE'}}</strong></p>
+            <p class="my-8">
+                Se você deseja fazer o upgrade para uma conta Premium, acesse nossa página de Planos e Preços
+            </p>
+            <button class="submit-btn my-2" disabled>Veja os Planos e Preços</button>
+        </div>
     </div>
 </div>
 <div class="logout-btn slide-top" (click)="logout()">
