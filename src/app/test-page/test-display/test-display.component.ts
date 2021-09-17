@@ -24,8 +24,6 @@ export class TestDisplayComponent implements OnInit {
   constructor( private _test: TestService ) {}
 
   ngOnInit(): void {
-    
-    
     this.buildQuestion()
   }
 
@@ -76,5 +74,9 @@ export class TestDisplayComponent implements OnInit {
     
     this.displayTest = [this.tests[this.indexOfQuestion += 1]]
     this.feedbackUp = false
+  }
+
+  reload(){
+    document.location.reload()
   }
 }
