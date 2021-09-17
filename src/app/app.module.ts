@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,6 +9,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ComponentsModule } from './components/components.module';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 const routes: Routes = [
   {
@@ -42,7 +43,12 @@ const routes: Routes = [
     ReactiveFormsModule
   ],
 
-  providers: [AuthGuardService],
+  providers: [AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent],
 })
 
