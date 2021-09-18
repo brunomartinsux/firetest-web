@@ -10,7 +10,7 @@
         </div>
         <div class="grid-cols ml-5">
             <p>Questões respondidas</p>
-            <p class="value">211</p>
+            <p class="value">{{feedbackData?.answered_questions}}</p>
         </div>
     </div>
     <div class="home-card slide-top">
@@ -21,7 +21,7 @@
         </div>
         <div class="grid-cols ml-5">
             <p>Respostas corretas</p>
-            <p class="value">124</p>
+            <p class="value">{{feedbackData?.correct_answer}}</p>
         </div>
     </div>
     <div class="home-card slide-top">
@@ -32,7 +32,7 @@
         </div>
         <div class="grid-cols ml-5">
             <p>Respostas erradas</p>
-            <p class="value">77</p>
+            <p class="value">{{feedbackData?.wrong_answer}}</p>
         </div>
     </div>
 </div>

@@ -53,7 +53,7 @@ export class TestDisplayComponent implements OnInit {
       () => this.setQuestion(),
     );
   }
-  
+
   setQuestion() {
     this._test.getQuestion(this.simulateId).subscribe((res) => {
       this.tests = res as Array<any>;
@@ -89,9 +89,17 @@ export class TestDisplayComponent implements OnInit {
 
   handleFeedback(questionId: string, feedback: string) {
     console.log({ question_id: questionId, correct: this.correct, feedback: feedback });
+    
+    this._test.handleQuestionAnswer({ question_id: questionId, correct: this.correct, feedback: feedback }).subscribe(
+      res => {
+        this.displayTest = [this.tests[(this.indexOfQuestion += 1)]];
+        this.feedbackUp = false;
+        console.log('deu boa');
+      },
+      error => console.log(error)
+    )
 
-    this.displayTest = [this.tests[(this.indexOfQuestion += 1)]];
-    this.feedbackUp = false;
+   
   }
 
   reload() {

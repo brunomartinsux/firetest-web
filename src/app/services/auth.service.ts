@@ -115,4 +115,10 @@ export class AuthService {
     const url = this.endpoint + this._urlUsersUpdate
     return this._http.patch(url, body, { headers: this.reqHeaders })
   }
+
+  public getFeedback(){
+    const url = this.endpoint + this._urlUsersFeedback
+    return this._http.get<any>(url, {headers: this.reqHeaders})
+  }
 }
+
