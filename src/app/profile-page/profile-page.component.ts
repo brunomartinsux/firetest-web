@@ -14,7 +14,7 @@ export class ProfilePageComponent implements OnInit {
 
   currentUser!: { complete_name: string, email: string, premium: true, schooling: string, institution: string }
 
-  constructor(private _fb: FormBuilder, private _auth: AuthService, private _route: Router) {
+  constructor(private _fb: FormBuilder, private _auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -24,25 +24,20 @@ export class ProfilePageComponent implements OnInit {
   }
 
   builForm(){
-    this.profileForm = this._fb.group({
-      complete_name: [this.currentUser?.complete_name, Validators.required],
-      email: [this.currentUser?.email, Validators.email],
-      schooling: [this.currentUser?.schooling, Validators.required],
-      institution: [this.currentUser?.institution, Validators.required],
-    });
 
     this._auth.getCurrentUser().subscribe(
       res => {
         let currentUser: { complete_name: string; email: string; premium: true, schooling: string, institution: string }
         currentUser = res as { complete_name: string; email: string; premium: true, schooling: string, institution: string }
         this.currentUser = currentUser
-        this.profileForm.value.complete_name = currentUser.complete_name
-        this.profileForm.value.email = currentUser.email
-        this.profileForm.value.schooling = currentUser.schooling
-        this.profileForm.value.institution = currentUser.institution
-        console.log(currentUser.institution);
+        this.profileForm = this._fb.group({
+          complete_name: [this.currentUser?.complete_name || '', Validators.required],
+          email: [this.currentUser?.email || '', Validators.email],
+          schooling: [this.currentUser?.schooling || '', Validators.required],
+          institution: [this.currentUser?.institution || '', Validators.required],
+        });
       },
-      error => console.log(error)
+      error => console.log(error),
     )
   }
 

@@ -9,47 +9,64 @@ import { TestService } from 'src/app/services/test.service';
 export class TestDisplayComponent implements OnInit {
   report: boolean = false;
   feedbackUp: boolean = false;
-  tentou: boolean = false;
-  simulateId: string = ''
-  indexOfQuestion: number = 0
-  showText: boolean = false
-  closeWarning: boolean = false
-  returnWarning: boolean = false
+  tried: boolean = false;
+  simulateId: string = '';
+  indexOfQuestion: number = 0;
+  showText: boolean = false;
+  closeWarning: boolean = false;
+  returnWarning: boolean = false;
+  correct!: boolean;
+
+  randomBuilder: {} = {
+    train_mode: true,
+    object_infos: {
+      years: [],
+      subjects: []
+    }
+  }
 
   tests: Array<any> = [];
-  displayTest: Array<any> = []
+  displayTest: Array<any> = [];
 
-  @Input() reqBody:any
+  @Input() reqBody: any;
 
-  constructor( private _test: TestService ) {}
+  constructor(private _test: TestService) {}
 
   ngOnInit(): void {
-    this.buildQuestion()
+    this.buildQuestion();
   }
 
-  buildQuestion(){
-    this._test.createTest(this.reqBody).subscribe(
-      res => this.simulateId = res.simulate_id,
-      error => console.log(error),
-      () => this.setQuestion(),
-    )
+  handleReport(reportText: string, id: string) {
+    this._test.reportQuestion({ question_id: id, text_report: reportText }).subscribe(
+      (res) => {
+        this.report = false;
+        console.log(res);
+      },
+      (error) => console.log(error),
+    );
   }
-  setQuestion(){
-    this._test.getQuestion(this.simulateId).subscribe(
-      res => {
-        this.tests = res as Array<any>
-        this.displayTest = [this.tests[this.indexOfQuestion]]
-        console.log(this.tests[this.indexOfQuestion]);
-        
-      }
-    )
+
+  buildQuestion() {
+    this._test.createTest(this.reqBody ?? this.randomBuilder).subscribe(
+      (res) => (this.simulateId = res.simulate_id),
+      (error) => console.log(error),
+      () => this.setQuestion(),
+    );
+  }
+  
+  setQuestion() {
+    this._test.getQuestion(this.simulateId).subscribe((res) => {
+      this.tests = res as Array<any>;
+      this.displayTest = [this.tests[this.indexOfQuestion]];
+      console.log(this.tests[this.indexOfQuestion]);
+    });
   }
 
   handleAnswer(isCorrect: boolean, target: any) {
     const element = target as Element;
     const incorrects = document.getElementsByClassName('option-btn');
-
     if (isCorrect) {
+      this.correct = true;
       element.setAttribute('correct', 'true');
       element.className += ' correct';
       for (let i = 0; i < 5; i++) {
@@ -58,25 +75,26 @@ export class TestDisplayComponent implements OnInit {
         }
       }
     } else {
+      this.correct = false;
       for (let i = 0; i < 5; i++) {
         var id = incorrects[i].id;
-        if ((id != 'correct')) {
+        if (id != 'correct') {
           incorrects[i].className += ' incorrect';
         } else {
-          incorrects[i].className += ' correct'
+          incorrects[i].className += ' correct';
         }
       }
     }
   }
 
-  handleFeedback(){
-    console.log(this.tests[this.indexOfQuestion += 1]);
-    
-    this.displayTest = [this.tests[this.indexOfQuestion += 1]]
-    this.feedbackUp = false
+  handleFeedback(questionId: string, feedback: string) {
+    console.log({ question_id: questionId, correct: this.correct, feedback: feedback });
+
+    this.displayTest = [this.tests[(this.indexOfQuestion += 1)]];
+    this.feedbackUp = false;
   }
 
-  reload(){
-    document.location.reload()
+  reload() {
+    document.location.reload();
   }
 }

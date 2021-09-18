@@ -68,3 +68,11 @@
   border: 1px dashed #4B5563;
   flex-direction: column;
 }
+
+.form-group select {
+  height: 52px;
+  background: #1F2937;
+  border-radius: 8px;
+  padding: 0 16px;
+  color: #fff;
+}
