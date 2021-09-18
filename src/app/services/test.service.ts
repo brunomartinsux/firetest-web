@@ -14,6 +14,7 @@ export class TestService {
   _urlStart ='/start'
   _urlGetQuestion = 'questions/:id'
   _urlReport = '/reporter'
+  _urlAnswer = '/answers_feedback'
 
   reqHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -39,6 +40,11 @@ export class TestService {
 
   reportQuestion(body: {question_id: string, text_report: string}){
     const url = this.endpoint + this._urlQuestions + this._urlReport
+    return this._http.post(url, body, { headers: this.reqHeaders })
+  }
+
+  handleQuestionAnswer(body: any){
+    const url = this.endpoint + this._urlQuestions + this._urlAnswer
     return this._http.post(url, body, { headers: this.reqHeaders })
   }
 
