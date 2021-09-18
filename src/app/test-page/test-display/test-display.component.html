@@ -1,5 +1,5 @@
 <div class="flex grid-rows-3 items-center justify-between px-4 bg-header">
-    <div class="flex grid-cols-1 align-center">
+    <div class="flex grid-cols-1 align-center" *ngIf="this.reqBody">
         <i class="fa-solid fa-arrow-left-long" (click)="returnWarning = true"></i>
     </div>
     <div class="flex grid-cols-2 align-center">
@@ -23,7 +23,10 @@
             </button>
         </div>
         <div class="flex grid-rows-1 justify-between items-center py-4">
-            <i class="fa-regular fa-flag pl-1 pt-5" style="cursor: pointer;" (click)="report = true"></i>
+            <div class="grid-rows-1 flex items-center" (click)="report = true"  style="cursor: pointer;">
+                <i class="fa-regular fa-flag pl-1 pt-5"></i>
+                <p class="pl-2 pt-5">Reportar erro</p>
+            </div>
             <button class="fab-btn slide-top" (click)="feedbackUp = true">
                 <i class="fa-solid fa-arrow-right fa-lg"></i>
             </button>
@@ -33,10 +36,10 @@
                 <p class="my-4">Por favor, descreva seu REPORT com o máximo de informações para resolvermos o problema.</p>
                 <form>
                     <div class="form-group">
-                        <textarea type="text" class="simple-input"></textarea>
+                        <textarea type="text" class="simple-input" #reportText></textarea>
                     </div>
                 </form>
-                <button class="report-btn mt-8" (click)="report = false">Enviar</button>
+                <button class="report-btn mt-8" (click)="handleReport(reportText.value, displayTest[0].id)">Enviar</button>
                 <a class="flex justify-center mt-4" style="font-weight: 400; cursor: pointer" (click)="report = false">Fechar</a>
             </div>
         </div>
@@ -45,15 +48,15 @@
                 <p class="text-center mt-4">O que você achou da questão?</p>
                 <div class="grid-rows-1 flex items-center justify-around mt-4">
                     <div class="text-center feedback-btn">
-                        <img src="/assets/hard-feedback.svg" alt="ez-img" (click)="handleFeedback()">
+                        <img src="/assets/hard-feedback.svg" alt="ez-img" (click)="handleFeedback(displayTest[0].id, 'hard')">
                         <small>Difícil</small>
                     </div>
                     <div class="text-center feedback-btn">
-                        <img src="/assets/med-feedback.svg" alt="ez-img" (click)="handleFeedback()">
+                        <img src="/assets/med-feedback.svg" alt="ez-img" (click)="handleFeedback(displayTest[0].id, 'medium')">
                         <small>Médio</small>
                     </div>
                     <div class="text-center feedback-btn">
-                        <img src="/assets/ez-feedback.svg" alt="ez-img" (click)="handleFeedback()">
+                        <img src="/assets/ez-feedback.svg" alt="ez-img" (click)="handleFeedback(displayTest[0].id, 'easy')">
                         <small>Fácil</small>
                     </div>
                 </div>
@@ -77,6 +80,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

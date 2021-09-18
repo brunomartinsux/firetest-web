@@ -13,6 +13,7 @@ export class TestService {
   _urlSubjects = '/subjects';
   _urlStart ='/start'
   _urlGetQuestion = 'questions/:id'
+  _urlReport = '/reporter'
 
   reqHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -35,5 +36,12 @@ export class TestService {
     const url = this.endpoint + this._urlQuestions + this._urlStart
     return this._http.post<{simulate_id:string}>(url, body, { headers: this.reqHeaders })
   }
+
+  reportQuestion(body: {question_id: string, text_report: string}){
+    const url = this.endpoint + this._urlQuestions + this._urlReport
+    return this._http.post(url, body, { headers: this.reqHeaders })
+  }
+
+
 
 }

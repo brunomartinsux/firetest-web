@@ -32,6 +32,11 @@
                 todos os anos</p>
         </div>
         <div class="row">
+            <div [ngClass]="findInArray(2021, 'years')? 'selected' : '' "
+                class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item"
+                (click)="handleSubjectSelection(2021, 'years')">
+                <p>2021 A</p>
+            </div>
             <div *ngFor="let year of years" [ngClass]="findInArray(year, 'years')? 'selected' : '' "
                 class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item"
                 (click)="handleSubjectSelection(year, 'years')">
