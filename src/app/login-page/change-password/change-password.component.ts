@@ -15,6 +15,8 @@ export class ChangePasswordComponent implements OnInit {
   viewPass: boolean = false;
   error: boolean = false;
 
+  currentRoute!: ActivatedRoute
+
   constructor(private _fb: FormBuilder, private _route: Router, private _auth: AuthService, private _activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -22,6 +24,21 @@ export class ChangePasswordComponent implements OnInit {
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
     });
+
+    let queryId: any
+    this._activatedRoute.params.subscribe(
+      res => queryId = res.id
+    )
+    this._auth.verifyQueryId(queryId).subscribe(
+      res => {
+        let resToken 
+        resToken = res as {token: string}
+        this._auth.storeToken(resToken.token)
+      },
+      error => {
+        this._route.navigate([('/login')])
+      }
+    )
   }
 
   get password() {
@@ -36,8 +53,16 @@ export class ChangePasswordComponent implements OnInit {
     if (!this.passMatch() || this.registerForm.invalid) {
       this.error = true;
     } else {
-      console.log('match');
-      
+      this._auth.updateUser({
+        account: {
+          password: this.registerForm.value.password
+        },
+      }).subscribe(
+        res => {
+          this._route.navigate([('/login')])
+        },
+        error => this.error = true
+      )
     }
   }
 

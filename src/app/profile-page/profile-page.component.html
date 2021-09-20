@@ -29,7 +29,7 @@
                 <label for="institution">Escola/Instituição</label>
                 <input type="text" formControlName="institution" id="institution" [value]="currentUser?.institution">
             </div>
-            <button class="submit-btn" (click)="handleSubmit()">Salvar</button>
+            <button class="submit-btn" (click)="handleSubmit()" [hidden]="!profileForm.dirty">Salvar</button>
         </form>
     </div>
 </div>
