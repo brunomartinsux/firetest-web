@@ -38,6 +38,7 @@ export class TestDisplayComponent implements OnInit {
 
   handleReport(reportText: string, id: string) {
     this.report = false;
+    this.tried = false
     this.displayTest = [this.tests[(this.indexOfQuestion += 1)]];
     this._test.reportQuestion({ question_id: id, text_report: reportText }).subscribe(
       () => {},
