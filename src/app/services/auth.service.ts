@@ -16,6 +16,7 @@ export class AuthService {
   _urlUsersFeedback = 'users/feedback';
   _urlUsersUpdate = 'users/update';
   _urlUsersCurrent = 'users/current_user';
+  _urlRecover = 'users/recover/:id'
 
   reqHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -120,5 +121,11 @@ export class AuthService {
     const url = this.endpoint + this._urlUsersFeedback
     return this._http.get<any>(url, {headers: this.reqHeaders})
   }
+
+  verifyQueryId(id:string){
+    const url = this.endpoint + this._urlRecover.replace(':id', id)
+    return this._http.get(url)
+  }
+
 }
 

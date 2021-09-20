@@ -16,7 +16,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
    { path: '', component: LoginPageComponent },
    { path: 'recover-password', component: RecoverPasswordComponent},
    { path: 'register', component: RegisterPageComponent},
-   { path: 'change-password', component: ChangePasswordComponent }
+   { path: 'change-password/:id', component: ChangePasswordComponent }
 
   ]
 @NgModule({

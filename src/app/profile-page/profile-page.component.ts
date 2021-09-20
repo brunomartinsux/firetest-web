@@ -19,11 +19,11 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.builForm()
+    this.buildForm()
 
   }
 
-  builForm(){
+  buildForm(){
 
     this._auth.getCurrentUser().subscribe(
       res => {
@@ -42,10 +42,21 @@ export class ProfilePageComponent implements OnInit {
   }
 
   handleSubmit() {
-    this._auth.updateUser(this.profileForm.value).subscribe(
+
+    const reqBody = {
+      account: {
+        email: this.profileForm.value.email, 
+        complete_name: this.profileForm.value.complete_name,
+      },
+      infos: {
+        schooling: this.profileForm.value.schooling,
+        institution: this.profileForm.value.institution
+      }
+    }
+
+    this._auth.updateUser(reqBody).subscribe(
       res => {
-        console.log(res)
-        this.builForm
+        this.buildForm
       },
       error => console.log(error)
     )

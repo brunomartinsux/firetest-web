@@ -37,11 +37,10 @@ export class TestDisplayComponent implements OnInit {
   }
 
   handleReport(reportText: string, id: string) {
+    this.report = false;
+    this.displayTest = [this.tests[(this.indexOfQuestion += 1)]];
     this._test.reportQuestion({ question_id: id, text_report: reportText }).subscribe(
-      (res) => {
-        this.report = false;
-        console.log(res);
-      },
+      () => {},
       (error) => console.log(error),
     );
   }
@@ -63,6 +62,7 @@ export class TestDisplayComponent implements OnInit {
   }
 
   handleAnswer(isCorrect: boolean, target: any) {
+    this.tried = true
     const element = target as Element;
     const incorrects = document.getElementsByClassName('option-btn');
     if (isCorrect) {
@@ -92,8 +92,11 @@ export class TestDisplayComponent implements OnInit {
     
     this._test.handleQuestionAnswer({ question_id: questionId, correct: this.correct, feedback: feedback }).subscribe(
       res => {
-        this.displayTest = [this.tests[(this.indexOfQuestion += 1)]];
+        if(this.tried){
+          this.displayTest = [this.tests[(this.indexOfQuestion += 1)]];
+        }
         this.feedbackUp = false;
+        this.tried = false;
         console.log('deu boa');
       },
       error => console.log(error)
