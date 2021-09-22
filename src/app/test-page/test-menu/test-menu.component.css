@@ -12,6 +12,7 @@
 .test-card{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     background-color: #4B5563;
     width: 100%;
     min-height: 168px;

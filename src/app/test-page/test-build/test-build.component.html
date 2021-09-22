@@ -1,5 +1,5 @@
-<div class="container" *ngIf="pageController === 'filter' ">
-    <div class="flex grid-rows-3 items-center px-4 pr-8 bg-header">
+<div class="container mx-auto" *ngIf="pageController === 'filter' ">
+    <div class="flex grid-rows-3 items-center px-4 pr-8 bg-header md:px-48">
         <div *ngIf="menuStep == 1" class="flex grid-cols-1 align-center" routerLink="/test">
             <i class="fa-solid fa-arrow-left-long"></i>
         </div>
@@ -10,7 +10,7 @@
             {{menuStep == 1? 'Escolher disciplinas' : 'Escolher ano'}}
         </div>
     </div>
-    <div *ngIf="menuStep == 1" class="flex justify-center container mx-auto pr-8"
+    <div *ngIf="menuStep == 1" class="flex justify-center container mx-auto pr-8  md:w-2/4 md:pt-48 md"
         style="padding: 90px 0 150px 0; flex-direction: column;">
         <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('subjects')" unselectable="on"
             onselectstart="return false;" onmousedown="return false;">
@@ -19,11 +19,11 @@
         </div>
         <button *ngFor="let subject of subjects" [ngClass]="findInArray(subject.id, 'subjects')? 'selected' : '' "
             (click)="handleSubjectSelection(subject.id, 'subjects')"
-            class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item ">
+            class="flex grid-rows-1 items-center justify-between px-4 mx-4 menu-item">
             {{subject.title}}
         </button>
     </div>
-    <div *ngIf="menuStep == 2" class="flex justify-center container mx-auto"
+    <div *ngIf="menuStep == 2" class="flex justify-center container mx-auto md:w-2/4 md:pt-48"
         style="padding: 90px 0 150px 0; flex-direction: column;">
         <div class="flex items-center mx-5 select-all text-focus-in" (click)="selectAll('years')" unselectable="on"
             onselectstart="return false;" onmousedown="return false;">
@@ -52,7 +52,7 @@
         <i class="fa-solid fa-arrow-right fa-lg"></i>
     </button>
 </div>
-<div class="container" *ngIf="pageController === 'display' ">
+<div *ngIf="pageController === 'display' ">
     <app-test-display [reqBody]="reqBody"></app-test-display>
 </div>
 <app-footer [hidden]="pageController === 'display'"></app-footer>

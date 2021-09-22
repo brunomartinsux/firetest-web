@@ -1,4 +1,4 @@
-<div class="flex grid-rows-3 items-center justify-between px-4 bg-header">
+<div class="flex grid-rows-3 items-center justify-between px-4 bg-header md:px-48">
     <div class="flex grid-cols-1 align-center" *ngIf="this.reqBody">
         <i class="fa-solid fa-arrow-left-long" (click)="returnWarning = true"></i>
     </div>
@@ -9,7 +9,7 @@
         <i class="fa-solid fa-xmark " (click)="closeWarning = true"></i>
     </div>
 </div>
-<div class="flex container mx-auto " style="padding: 90px 16px; padding-bottom: 50px; flex-direction: column;">
+<div class="flex container mx-auto md:w-2/4 md:pt-48" style="padding: 90px 16px; padding-bottom: 50px; flex-direction: column;">
     <div *ngFor="let test of displayTest" class="test-container mx-auto">
         <p style="font-size: 18px; padding-bottom: 14px; font-weight: 600;"> {{test?.modules[0] ?? ''}} ({{test?.org + '/' + test?.year}})</p>
         <img *ngFor="let img of test.img" [src]="test?.img" class="test-img">
@@ -31,8 +31,8 @@
                 <i class="fa-solid fa-arrow-right fa-lg"></i>
             </button>
         </div>
-        <div class="container report-container" *ngIf="report">
-            <div class="report-content slide-top">
+        <div class="container report-container mx-auto" *ngIf="report">
+            <div class="report-content md:container mx-auto slide-top">
                 <p class="my-4">Por favor, descreva seu REPORT com o máximo de informações para resolvermos o problema.</p>
                 <form>
                     <div class="form-group">
@@ -43,7 +43,7 @@
                 <a class="flex justify-center mt-4" style="font-weight: 400; cursor: pointer" (click)="report = false">Fechar</a>
             </div>
         </div>
-        <div class="container report-container feedback" *ngIf="feedbackUp" (click)="feedbackUp = false">
+        <div class="container report-container feedback mx-auto" *ngIf="feedbackUp" (click)="feedbackUp = false">
             <div class="report-content feedback slide-top">
                 <p class="text-center mt-4">O que você achou da questão?</p>
                 <div class="grid-rows-1 flex items-center justify-around mt-4">
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="container report-container feedback" *ngIf="closeWarning" (click)="closeWarning = false">
+        <div class="container report-container feedback mx-auto" *ngIf="closeWarning" (click)="closeWarning = false">
             <div class="report-content feedback slide-top">
                 <p class="text-center mt-4">Tem certeza que deseja fechar?</p>
                 <div class="grid-cols-6 flex items-center justify-center mt-4" style="flex-direction: column;">
@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <div class="container report-container feedback" *ngIf="returnWarning" (click)="returnWarning = false">
+        <div class="container report-container feedback mx-auto" *ngIf="returnWarning" (click)="returnWarning = false">
             <div class="report-content feedback slide-top">
                 <p class="text-center mt-4">Você quer voltar para o menu?</p>
                 <div class="grid-cols-6 flex items-center justify-center mt-4" style="flex-direction: column;">

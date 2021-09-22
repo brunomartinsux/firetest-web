@@ -1,7 +1,7 @@
 <app-header style="position: fixed; top: 0; width: 100%; z-index: 1200;"></app-header>
-<div class="container mx-auto p-5">
-    <h1 class="login-title">Cadastre-se gratuitamente</h1>
-    <form class="slide-top" [formGroup]="registerForm">
+<div class="max-w-md:container md:grid-cols-auto p-5 md:flex md:items-center md:self-center" style="flex-direction: column;">
+    <h1 class="login-title md:pt-24">Cadastre-se gratuitamente</h1>
+    <form class="slide-top md:w-2/4" [formGroup]="registerForm">
         <div class="form-group mt-10">
             <label for="email">Nome completo</label>
             <input type="text" class="simple-input" id="name" formControlName="complete_name">

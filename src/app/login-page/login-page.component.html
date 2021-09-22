@@ -1,7 +1,7 @@
 <app-header></app-header>
-<div class="container mx-auto p-5">
-    <h1 class="login-title">Login</h1>
-    <form class="slide-top" [formGroup]="loginForm">
+<div class="max-w-md:container md:grid-cols-auto p-5 md:flex md:items-center md:self-center" style="flex-direction: column;">
+    <h1 class="login-title md:pt-24">Login</h1>
+    <form class="slide-top md:w-2/4" [formGroup]="loginForm">
         <div class="form-group mt-10">
             <label for="email">E-mail</label>
             <input type="text" id="email" class="simple-input" formControlName="email" (change)="error = false">
