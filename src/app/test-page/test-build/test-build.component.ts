@@ -33,7 +33,7 @@ export class TestBuildComponent implements OnInit {
   constructor(private _test: TestService) {}
 
   ngOnInit(): void {
-    for (let i = 2019; i >= 1994; i--) {
+    for (let i = 2019; i >= 2004; i--) {
       this.years.push(i);
     }
 

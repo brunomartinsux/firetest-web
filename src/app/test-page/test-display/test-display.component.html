@@ -12,11 +12,11 @@
 <div class="flex container mx-auto md:w-2/4 md:pt-48" style="padding: 90px 16px; padding-bottom: 50px; flex-direction: column;">
     <div *ngFor="let test of displayTest" class="test-container mx-auto">
         <p style="font-size: 18px; padding-bottom: 14px; font-weight: 600;"> {{test?.modules[0] ?? ''}} ({{test?.org + '/' + test?.year}})</p>
-        <img *ngFor="let img of test.img" [src]="test?.img" class="test-img">
+        <img *ngFor="let img of test?.img" [src]="test?.img" class="test-img">
         <p *ngIf="test?.text" (click)="showText = !showText"><strong>Clique aqui para mostrar os textos</strong></p>
         <p *ngIf="showText" class="my-4">{{test.text}}</p>
-        <p class="my-4" *ngFor="let paragraph of test.body">{{paragraph}}</p>
-        <div *ngFor="let answer of test.answers">
+        <p class="my-4" *ngFor="let paragraph of test?.body">{{paragraph}}</p>
+        <div *ngFor="let answer of test?.answers">
             <button class="option-btn" (click)="handleAnswer(answer?.isCorrect, $event.target)" [id]="answer?.isCorrect? 'correct' : 'incorrect' ">
                 <div class="option-icon">{{answer?.option}}</div>
                 <p class="pl-12 pr-4 py-2" style="pointer-events: none;">{{answer?.body}}</p>
