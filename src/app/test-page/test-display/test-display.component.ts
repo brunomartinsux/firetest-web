@@ -16,6 +16,7 @@ export class TestDisplayComponent implements OnInit {
   closeWarning: boolean = false;
   returnWarning: boolean = false;
   correct!: boolean;
+  empty: boolean = false
 
   randomBuilder: {} = {
     train_mode: true,
@@ -33,6 +34,8 @@ export class TestDisplayComponent implements OnInit {
   constructor(private _test: TestService) {}
 
   ngOnInit(): void {
+    console.log(this.reqBody);
+    
     this.buildQuestion();
   }
 
@@ -58,7 +61,9 @@ export class TestDisplayComponent implements OnInit {
     this._test.getQuestion(this.simulateId).subscribe((res) => {
       this.tests = res as Array<any>;
       this.displayTest = [this.tests[this.indexOfQuestion]];
-      console.log(this.tests[this.indexOfQuestion]);
+      if(!this.tests[this.indexOfQuestion]){
+        this.empty = true
+      }
     });
   }
 
