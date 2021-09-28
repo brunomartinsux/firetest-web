@@ -10,6 +10,7 @@ import { ComponentsModule } from './components/components.module';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 
 const routes: Routes = [
   {
@@ -29,11 +30,12 @@ const routes: Routes = [
   },
   {
     path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuardService]
-  }
+  },
+  { path: 'dashboard', component: DashboardPageComponent }
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent, ProfilePageComponent],
+  declarations: [AppComponent, HomePageComponent, ProfilePageComponent, DashboardPageComponent],
   imports: [
     BrowserModule,
     FormsModule,

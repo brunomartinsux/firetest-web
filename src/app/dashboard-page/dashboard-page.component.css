@@ -1,0 +1,207 @@
+.bg-header {
+  height: 75px;
+  background-color: #111827;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1200;
+}
+.dashbody {
+  background-color: #f9fafb;
+}
+
+.users-total {
+  background: #ffffff;
+  box-shadow: 0px 1px 37px rgba(82, 82, 82, 0.1);
+  border-radius: 8px;
+  width: 300px;
+  height: 133px;
+  color: #000;
+}
+
+.invite-box {
+  border-radius: 8px;
+  border: 1px dashed #e5e7eb;
+  width: 300px;
+  height: 101px;
+  color: #000;
+  background-color: #ffffff;
+}
+
+.link-text::-webkit-scrollbar {
+  display: none;
+}
+
+.copy-path-box {
+  border: 1px solid #f3f4f6;
+  color: #4b5563;
+  height: 40px;
+  width: 90%;
+}
+
+.answers-graph {
+  width: 300px;
+  height: 346px;
+  box-shadow: 0px 15px 40px rgba(88, 88, 88, 0.1);
+  border-radius: 8px;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.cover-trial {
+  height: 20px;
+  width: 100px;
+  position: absolute;
+  margin-top: 135px;
+  margin-right: 100px;
+  background-color: #ffffff;
+}
+
+.subjects-list {
+  background: #ffffff;
+  border-radius: 8px;
+  height: 612px;
+  width: 100%;
+  box-shadow: 0px 5px 50px rgba(85, 85, 85, 0.1);
+
+}
+
+.wrapper-scroll{
+  width: 100%;
+  overflow-y: scroll;
+  height: 100%;
+  margin-right:  16px;
+}
+
+/* width */
+.wrapper-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.wrapper-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  margin-top: 10px;
+  margin-bottom: 32px;
+  border-radius: 16px;
+}
+
+/* Handle */
+.wrapper-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 16px;
+
+}
+
+/* Handle on hover */
+.wrapper-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+.green-bar {
+  background: #10b981;
+  border-radius: 100px;
+  width: 30px;
+  height: 4px;
+}
+
+.yellow-bar {
+  background: #fbbf24;
+  border-radius: 100px;
+  width: 30px;
+  height: 4px;
+}
+
+.red-bar {
+  background: #ef4444;
+  border-radius: 100px;
+  width: 30px;
+  height: 4px;
+}
+
+.sub-icon {
+  background: #f5f3ff;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-bar {
+  height: 10px;
+  width: 100%;
+  background: #d1d3d3;
+  border-radius: 8px;
+}
+
+.students-label{
+  border-bottom: 1px solid #E5E7EB;
+  border-radius: 8px 8px 0 0;
+  background: #ffffff;
+  height: 85px;
+  font-weight: 600;
+}
+
+.user-profile{
+  background: #f5f3ff;
+  border-radius: 8px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8B5CF6;
+}
+
+.cancel-invite{
+  background: #FEE2E2;
+  color:#F87171;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.accept-invite{
+  background: #ECFDF5;
+  color:#10B981;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+small{
+  color: #9CA3AF;
+}
+
+@media only screen and (max-width: 1200px) {
+  .dashbody{
+    display: none;
+  }
+  .warning{
+    font-weight: 600;
+    display: block;
+  }
+}
