@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ComponentsModule } from './components/components.module';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 
 const routes: Routes = [
   {
@@ -16,21 +19,23 @@ const routes: Routes = [
   },
   {
     path: 'test',
-    loadChildren: () => import('./test-page/test.module').then((m) => m.TestModule)
+    loadChildren: () => import('./test-page/test.module').then((m) => m.TestModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: '', redirectTo: '/home', pathMatch: 'full'
   },
   {
-    path: 'home', component: HomePageComponent
+    path: 'home', component: HomePageComponent, canActivate: [AuthGuardService]
   },
   {
-    path: 'profile', component: ProfilePageComponent
-  }
+    path: 'profile', component: ProfilePageComponent, canActivate: [AuthGuardService]
+  },
+  { path: 'dashboard', component: DashboardPageComponent }
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent, ProfilePageComponent],
+  declarations: [AppComponent, HomePageComponent, ProfilePageComponent, DashboardPageComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -38,10 +43,14 @@ const routes: Routes = [
     HttpClientModule,
     ComponentsModule,
     ReactiveFormsModule
-    
   ],
 
-  providers: [],
+  providers: [AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent],
 })
 

@@ -20,9 +20,8 @@
   font-size: 20px;
   font-weight: 600;
   width: 94%;
-  margin: 0 3%;
+  max-width: 450px;
   height: 80px;
-  right: 16px;
   bottom: 80px;
   background: #4b5563;
   border-radius: 16px;
@@ -57,4 +56,22 @@
 .profile-card {
   background: #374151;
   border-radius: 16px;
+}
+
+.premium-content{
+  width: 300px;
+  height: 300px;
+  margin: 16px;
+  border-radius: 16px;
+  background: #1F2937;
+  border: 1px dashed #4B5563;
+  flex-direction: column;
+}
+
+.form-group select {
+  height: 52px;
+  background: #1F2937;
+  border-radius: 8px;
+  padding: 0 16px;
+  color: #fff;
 }

@@ -15,6 +15,13 @@
     padding: 0 20px;
 }
 
+.form-group select {
+    height: 52px;
+    background: #4B5563;
+    border-radius: 8px;
+    padding: 0 16px;
+}
+
 button.btn-primary {
     background: #8B5CF6;
     border-radius: 8px;
@@ -34,4 +41,15 @@ p.link{
 p.link:hover{
     text-decoration: underline;
     cursor: pointer;
+}
+
+.login-pass{
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+}
+
+button[disabled]{
+    background: rgba(185, 185, 185, 0.281);
+    color: rgba(182, 182, 182, 0.281);
 }

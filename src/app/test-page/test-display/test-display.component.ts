@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TestService } from 'src/app/services/test.service';
 
 @Component({
   selector: 'app-test-display',
@@ -8,37 +9,70 @@ import { Component, OnInit } from '@angular/core';
 export class TestDisplayComponent implements OnInit {
   report: boolean = false;
   feedbackUp: boolean = false;
-  tentou: boolean = false;
+  tried: boolean = false;
+  simulateId: string = '';
+  indexOfQuestion: number = 0;
+  showText: boolean = false;
+  closeWarning: boolean = false;
+  returnWarning: boolean = false;
+  correct!: boolean;
+  empty: boolean = false
 
-  tests = [
-    {
-      subject: 'Fisica/Princípios da Física',
-      img: '/assets/test-img.svg',
-      body: [
-        'Uma pesquisa de mercado sobre produtos de higiene e limpeza apresentou o comparativo entre duas marcas, A e B.',
-        'Esses produtos são concentrados e, para sua utilização, é necessária sua diluição em água.',
-        'Uma pesquisa de mercado sobre produtos de higiene e limpeza apresentou o comparativo entre duas marcas, A e B. limpeza apresentou o comparativo entre duas marcas, A e B.',
-        'Nessas condições, as marcas dos quatro produtos adquiridos pelo consumidor, na ordem apresentada na tabela, são:',
-      ],
-      answers: [
-        { option: 'A', body: 'A, A, A, B', isCorrect: true },
-        { option: 'B', body: 'A, B, A, A', isCorrect: false },
-        { option: 'C', body: 'A, B, C, B', isCorrect: false },
-        { option: 'D', body: 'A, A, A, A', isCorrect: false },
-        { option: 'E', body: 'A, B, B, B', isCorrect: false },
-      ],
-    },
-  ];
+  randomBuilder: {} = {
+    train_mode: true,
+    object_infos: {
+      years: [],
+      subjects: []
+    }
+  }
 
-  constructor() {}
+  tests: Array<any> = [];
+  displayTest: Array<any> = [];
 
-  ngOnInit(): void {}
+  @Input() reqBody: any;
+
+  constructor(private _test: TestService) {}
+
+  ngOnInit(): void {
+    console.log(this.reqBody);
+    
+    this.buildQuestion();
+  }
+
+  handleReport(reportText: string, id: string) {
+    this.report = false;
+    this.tried = false
+    this.displayTest = [this.tests[(this.indexOfQuestion += 1)]];
+    this._test.reportQuestion({ question_id: id, text_report: reportText }).subscribe(
+      () => {},
+      (error) => console.log(error),
+    );
+  }
+
+  buildQuestion() {
+    this._test.createTest(this.reqBody ?? this.randomBuilder).subscribe(
+      (res) => (this.simulateId = res.simulate_id),
+      (error) => console.log(error),
+      () => this.setQuestion(),
+    );
+  }
+
+  setQuestion() {
+    this._test.getQuestion(this.simulateId).subscribe((res) => {
+      this.tests = res as Array<any>;
+      this.displayTest = [this.tests[this.indexOfQuestion]];
+      if(!this.tests[this.indexOfQuestion]){
+        this.empty = true
+      }
+    });
+  }
 
   handleAnswer(isCorrect: boolean, target: any) {
+    this.tried = true
     const element = target as Element;
     const incorrects = document.getElementsByClassName('option-btn');
-
     if (isCorrect) {
+      this.correct = true;
       element.setAttribute('correct', 'true');
       element.className += ' correct';
       for (let i = 0; i < 5; i++) {
@@ -47,14 +81,37 @@ export class TestDisplayComponent implements OnInit {
         }
       }
     } else {
+      this.correct = false;
       for (let i = 0; i < 5; i++) {
         var id = incorrects[i].id;
-        if ((id != 'correct')) {
+        if (id != 'correct') {
           incorrects[i].className += ' incorrect';
         } else {
-          incorrects[i].className += ' correct'
+          incorrects[i].className += ' correct';
         }
       }
     }
+  }
+
+  handleFeedback(questionId: string, feedback: string) {
+    console.log({ question_id: questionId, correct: this.correct, feedback: feedback });
+    
+    this._test.handleQuestionAnswer({ question_id: questionId, correct: this.correct, feedback: feedback }).subscribe(
+      res => {
+        if(this.tried){
+          this.displayTest = [this.tests[(this.indexOfQuestion += 1)]];
+        }
+        this.feedbackUp = false;
+        this.tried = false;
+        console.log('deu boa');
+      },
+      error => console.log(error)
+    )
+
+   
+  }
+
+  reload() {
+    document.location.reload();
   }
 }

@@ -1,0 +1,301 @@
+<div class="bg-header">
+    <div>
+        🔥 firetest
+    </div>
+    <div class="d-flex items-center">
+        <div class="px-2" style="font-weight: normal;">
+            Sair <i class="fa-solid fa-arrow-right-from-bracket ml-2"></i>
+        </div>
+    </div>
+</div>
+<div class="warning pt-48" hidden>
+    <div class="px-10">
+        ABRA NO COMPUTADOR, AINDA NÃO TEMOS SUPORTE PARA CELULAR NESTA TELA...
+    </div>
+</div>
+<div class="container mx-auto dashbody min-w-full min-h-full pt-24 px-48" style="color: black;">
+    <div class="container mx-auto min-h-full">
+        <div class="flex">
+            <!-- Users & feedback -->
+            <div class="flex flex-col mr-8">
+                <div class="users-total flex flex-col items-center justify-center">
+                    <div>
+                        Total Usuários
+                    </div>
+                    <div style="color: #374151; font-size: 32px; font-weight: 600;">
+                        268
+                    </div>
+                </div>
+                <div class="invite-box my-4 flex flex-col items-center justify-center">
+                    <p style="font-weight: 600">Convidar um novo aluno com o link</p>
+                    <div class="copy-path-box flex flex-row items-center justify-between px-2">
+                        <p style="width: 90%; overflow-x: scroll;" class="link-text">{{schoolPath}}</p>
+                        <i *ngIf="!copied" class="fa-solid fa-copy" style="cursor: pointer;"
+                            (click)="copyClipboard()"></i>
+                        <i *ngIf="copied" class="fa-solid fa-check"></i>
+                    </div>
+                </div>
+                <div class="answers-graph mb-4 pb-8">
+                    <div class="flex flex-col items-center"
+                        style="position: absolute; z-index: 1200; margin-top: -50px;">
+                        <h1 style="font-size: 30px; font-weight: 600;">15,680</h1>
+                        <p>Respostas</p>
+                    </div>
+                    <div id="chartContainer"
+                        style="height: 200px; width: 200px; margin-left:auto;margin-right:auto; margin-top: -50px;">
+                    </div>
+                    <div class="cover-trial"></div>
+                    <div class="flex flex-col items-start"
+                        style="position: absolute; margin-top: 250px; font-weight: 600;">
+                        <div class="flex flex-row justify-center items-center">
+                            <div class="green-bar mx-2"></div>
+                            <p>Fácil 😎</p>
+                        </div>
+                        <div class="flex flex-row justify-center items-center">
+                            <div class="yellow-bar mx-2"></div>
+                            <p>Médio 😐</p>
+                        </div>
+                        <div class="flex flex-row justify-center items-center">
+                            <div class="red-bar mx-2"></div>
+                            <p>Difícil 😵</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Subs list -->
+            <div class="flex flex-col items-center subjects-list" style="color: black;">
+                <div class="my-8" style="color: black; font-size: 18px;">
+                    Porcentagem de Acertividade por Matéria
+                </div>
+                <div class="wrapper-scroll">
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: #8B5CF6;">
+                            <i class="fa-solid fa-atom fa-xl"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Física</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon">
+                            <img src="assets/subject-icons/Vector-1.svg" alt="">
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Química</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon">
+                            <img src="assets/subject-icons/Vector-2.svg" alt="">
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Biologia</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon">
+                            <img src="assets/subject-icons/Vector-3.svg" alt="">
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Geografia</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon">
+                            <img src="assets/subject-icons/Vector-4.svg" alt="">
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Matemática</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: lightcoral;">
+                            <i class="fa-solid fa-pen-line fa-lg"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Português</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: rgb(75, 175, 92);">
+                            <i class="fa-solid fa-person-running fa-xl"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Educação Física</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: mediumslateblue;">
+                            <i class="fa-solid fa-book-open-cover fa-lg"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Literatura</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: midnightblue;">
+                            <i class="fa-solid fa-masks-theater fa-lg"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Educação Artística</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: orchid;">
+                            <i class="fa-solid fa-family-pants fa-xl"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Sociologia</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: sandybrown;">
+                            <i class="fa-solid fa-head-side-brain fa-xl"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Filosofia</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: slateblue;">
+                            <i class="fa-solid fa-newspaper fa-xl"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Conhecimentos Gerais</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: red">
+                            <i class="fa-solid fa-flag-usa fa-xl"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Inglês</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: #657c00;">
+                            <i class="fa-solid fa-book-bookmark fa-xl"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>Espanhol</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                    <div class="flex flex-row justify-between items-center my-4" style="width: 100%; padding: 0 70px;">
+                        <div class="sub-icon" style="color: violet;">
+                            <i class="fa-solid fa-scroll-old fa-xl"></i>
+                        </div>
+                        <div class="progress-bar-container flex flex-col items-start mx-4" style="width: 80%;">
+                            <div class="progress-bar"></div>
+                            <p>História</p>
+                        </div>
+                        <div style="font-size: 24px; font-weight: 600;">0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-row items-center px-8 justify-between students-label">
+        <p>Lista de Alunos Convidados</p>
+        <p>Status</p>
+    </div>
+    <div class="flex flex-row items-center px-8 justify-between students-label" style="border-radius: 0;">
+        <div class="flex flex-row items-center">
+            <div class="user-profile mr-8">LLS</div>
+            <div class="flex flex-col">
+                <p>Leonardo Lopes dos Santos</p>
+                <small>lameranha@gmail.com</small>
+            </div>
+        </div>
+        <div *ngIf="!accepted && !refused" class="flex flex-row items-center">
+            <div class="cancel-invite mx-4">
+                <i class="fa-solid fa-xmark" (click)="refused = true"></i>
+            </div>
+            <div class="accept-invite">
+                <i class="fa-solid fa-check" (click)="accepted = true"></i>
+            </div>
+        </div>
+        <p *ngIf="refused" style="background: #FEE2E2; color:#F87171; width: 87px; height: 25px; text-align:center">Recusado</p>
+        <p *ngIf="accepted" style="background: #ECFDF5; color:#10B981; width: 87px; height: 25px; text-align:center">Ativo</p>
+    </div>
+    <div class="flex flex-row items-center px-8 justify-between students-label" style="border-radius: 0;">
+        <div class="flex flex-row items-center">
+            <div class="user-profile mr-8">LLS</div>
+            <div class="flex flex-col">
+                <p>Leonardo Lopes dos Santos</p>
+                <small>lameranha@gmail.com</small>
+            </div>
+        </div>
+        <div class="flex flex-row items-center">
+            <div class="cancel-invite mx-4">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="accept-invite">
+                <i class="fa-solid fa-check"></i>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-row items-center px-8 justify-between students-label" style="border-radius: 0;">
+        <div class="flex flex-row items-center">
+            <div class="user-profile mr-8">LLS</div>
+            <div class="flex flex-col">
+                <p>Leonardo Lopes dos Santos</p>
+                <small>lameranha@gmail.com</small>
+            </div>
+        </div>
+        <div class="flex flex-row items-center">
+            <div class="cancel-invite mx-4">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="accept-invite">
+                <i class="fa-solid fa-check"></i>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-row items-center px-8 justify-between students-label" style="border-radius: 0;">
+        <div class="flex flex-row items-center">
+            <div class="user-profile mr-8">LLS</div>
+            <div class="flex flex-col">
+                <p>Leonardo Lopes dos Santos</p>
+                <small>lameranha@gmail.com</small>
+            </div>
+        </div>
+        <div class="flex flex-row items-center">
+            <div class="cancel-invite mx-4">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="accept-invite">
+                <i class="fa-solid fa-check"></i>
+            </div>
+        </div>
+
+    </div>
+</div>

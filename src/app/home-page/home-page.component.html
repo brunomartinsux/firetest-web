@@ -1,7 +1,7 @@
-<div class="flex grid-rows-1 items-center px-4 bg-header">
+<div class="flex grid-rows-1 items-center px-4 bg-header md:px-48">
     ️‍Home
 </div>
-<div class="container mx-auto p-4 py-16">
+<div class="container mx-auto p-4 py-16 md:w-1/4 md:pt-40 ">
     <div class="home-card slide-top">
         <div class="grid-cols">
             <div class="home-img" style="background-color: #DBEAFE;">
@@ -10,7 +10,7 @@
         </div>
         <div class="grid-cols ml-5">
             <p>Questões respondidas</p>
-            <p class="value">185</p>
+            <p class="value">{{feedbackData?.answered_questions}}</p>
         </div>
     </div>
     <div class="home-card slide-top">
@@ -21,7 +21,7 @@
         </div>
         <div class="grid-cols ml-5">
             <p>Respostas corretas</p>
-            <p class="value">185</p>
+            <p class="value">{{feedbackData?.correct_answer}}</p>
         </div>
     </div>
     <div class="home-card slide-top">
@@ -32,7 +32,7 @@
         </div>
         <div class="grid-cols ml-5">
             <p>Respostas erradas</p>
-            <p class="value">185</p>
+            <p class="value">{{feedbackData?.wrong_answer}}</p>
         </div>
     </div>
 </div>

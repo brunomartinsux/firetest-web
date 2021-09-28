@@ -1,27 +1,52 @@
-<div class="flex grid-rows-1 items-center px-4 bg-header">
+<div class="flex grid-rows-1 items-center px-4 bg-header md:px-48">
     Perfil
 </div>
-<div class="container mx-auto p-4 pt-20">
+<div class="container mx-auto p-4 pt-20  md:w-2/4 md:pt-24">
     <div class="container p-4 mt-2 profile-card slide-top">
         <h1 style="font-size: 20px ; font-weight: 600" class="my-2">Dados Pessoais</h1>
         <form [formGroup]="profileForm">
             <div class="form-group">
                 <label for="name">Nome Completo</label>
-                <input type="text" formControlName="name">
+                <input type="text" formControlName="complete_name" id="name">
             </div>
             <div class="form-group my-4">
                 <label for="email">Email</label>
-                <input type="text" formControlName="email">
+                <input type="text" formControlName="email" id="email" [value]="currentUser?.email">
+            </div>
+            <div class="form-group mt-4">
+                <label for="schooling">Grau de escolaridade</label>
+                <select class="simple-input" formControlName="schooling">
+                    <option value="" hidden>{{currentUser?.schooling}}</option>
+                    <option value="1º Ano - Ens Médio" >1º Ano - Ens Médio</option>
+                    <option value="2º Ano - Ens Médio" >2º Ano - Ens Médio</option>
+                    <option value="3º Ano - Ens Médio" >3º Ano - Ens Médio</option>
+                    <option value="Superior Incompleto" >Superior Incompleto</option>
+                    <option value="Superior Completo" >Superior Completo</option>
+                    <option value="Não informado" >Outros</option>
+                </select>
             </div>
             <div class="form-group my-4">
-                <label for="password">Senha</label>
-                <input type="text" formControlName="password">
+                <label for="institution">Escola/Instituição</label>
+                <input type="text" formControlName="institution" id="institution" [value]="currentUser?.institution">
             </div>
-            <button class="submit-btn" (click)="handleSubmit()" [disabled]="!profileForm.valid">Salvar</button>
+            <button class="submit-btn" (click)="handleSubmit()" [hidden]="!profileForm.dirty">Salvar</button>
         </form>
     </div>
 </div>
-<div class="logout-btn slide-top" routerLink="/login">
+
+<div class="container mx-auto p-4 pt-0 md:w-2/4">
+    <div class="container p-4 profile-card slide-top flex items-center" style="flex-direction: column;">
+        <h1 style="font-size: 20px ; font-weight: 600" class="d-flex self-start pl-2">Assinatura</h1>
+        <div class="premium-content flex justify-center p-4">
+            <p>Atualmente você está usando o <strong>Plano {{currentUser?.premium? 'PREMIUM' : 'FREE'}}</strong></p>
+            <p class="my-8">
+                Se você deseja fazer o upgrade para uma conta Premium, acesse nossa página de Planos e Preços
+            </p>
+            <button class="submit-btn my-2" disabled>Veja os Planos e Preços</button>
+        </div>
+    </div>
+</div>
+<div class="logout-btn slide-top container mx-auto" (click)="logout()">
     <p>Sair</p>
     <i class="fa-solid fa-arrow-right-from-bracket"></i>
 </div>

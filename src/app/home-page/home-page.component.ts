@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  feedbackData!: {
+    correct_answer: number,
+    wrong_answer: number,
+    answered_questions: number
+ }
+
+  constructor( private _auth: AuthService ) { }
 
   ngOnInit(): void {
+    this._auth.getFeedback().subscribe(
+      res => {
+        let resData: {}
+        resData = res
+        this.feedbackData = resData as any
+      }
+    )
   }
 
 }

@@ -1,20 +1,22 @@
 <app-header></app-header>
-<div class="container mx-auto p-5">
-    <h1 class="login-title">Login</h1>
-    <form class="slide-top">
+<div class="max-w-md:container md:grid-cols-auto p-5 md:flex md:items-center md:self-center" style="flex-direction: column;">
+    <h1 class="login-title md:pt-24">Login</h1>
+    <form class="slide-top md:w-2/4" [formGroup]="loginForm">
         <div class="form-group mt-10">
             <label for="email">E-mail</label>
-            <input type="text" class="simple-input">
+            <input type="text" id="email" class="simple-input" formControlName="email" (change)="error = false">
         </div>
         <div class="form-group mt-4">
             <label for="email">Senha</label>
-            <input type="text" class="simple-input">
+            <input [type]="viewPass? 'text' : 'password' " class="simple-input" formControlName="password" (change)="error = false">
+            <small *ngIf="error" style="color: red;">Email ou senha inválidos</small>
+            <i class="login-pass mt-10" (click)="viewPass = !viewPass" [ngClass]="viewPass? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash' "></i>
             <div class="flex grid-rows-1 items-center">
                 <i class="fa-solid fa-circle-exclamation mt-2"></i>
                 <p class="px-2 mt-2 link" routerLink="/login/recover-password">Esqueci minha senha</p>
             </div>
         </div>
-        <button class="btn-primary" routerLink="/home">Acessar minha conta</button>
+        <button class="btn-primary" (click)="onSubmit()">Acessar minha conta</button>
         <p class="mt-2 link" routerLink="/login/register">Ainda não tem uma conta? Faça agora!</p>
     </form>
 </div>
